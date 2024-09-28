@@ -68,6 +68,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_S: return KC_C;
         case KC_QUOT: return KC_L;
     }
+    return KC_SLSH;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
