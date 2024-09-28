@@ -62,9 +62,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_A: return KC_Y;
+        case KC_B: return KC_T;
         case KC_C: return KC_K;
+        case KC_E: return KC_X;
         case KC_F: return KC_T;
         case KC_G: return KC_H;
+        case KC_P: return KC_T;
         case KC_S: return KC_C;
         case KC_QUOT: return KC_L;
     }
