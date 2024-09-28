@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-const uint16_t PROGMEM combo0[] = { KC_SPACE, OSL(1), COMBO_END};
+const uint16_t PROGMEM combo0[] = { OSL(1), KC_SPACE, COMBO_END};
 const uint16_t PROGMEM combo1[] = { OSM(MOD_LALT), OSM(MOD_LGUI), COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -50,14 +50,6 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo1, TO(0)),
 };
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_SPACE:
-            return TAPPING_TERM + 100;
-        default:
-            return TAPPING_TERM;
-    }
-}
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
