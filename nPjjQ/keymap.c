@@ -19,18 +19,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_SPACE,       OSL(1),                                         RCTL(KC_BSPC),  OSM(MOD_RSFT)
   ),
   [1] = LAYOUT_voyager(
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_NO,          KC_NO,          KC_SLASH,       KC_ASTR,        KC_NO,          KC_NO,          
-    KC_GRAVE,       KC_HASH,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_PIPE,                                        KC_CIRC,        KC_1,           KC_2,           KC_3,           KC_MINUS,       KC_EQUAL,       
-    KC_TRANSPARENT, KC_EXLM,        KC_QUES,        KC_LPRN,        KC_RPRN,        KC_AMPR,                                        KC_DLR,         KC_4,           KC_5,           KC_6,           KC_PLUS,        KC_DOT,         
-    KC_TILD,        KC_LABK,        KC_RABK,        KC_LBRC,        KC_RBRC,        KC_BSLS,                                        KC_PERC,        KC_7,           KC_8,           KC_9,           KC_ENTER,       QK_LLCK,        
+    KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,                                          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
+    KC_GRAVE,       KC_HASH,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_CIRC,                                        KC_ASTR,        KC_1,           KC_2,           KC_3,           KC_MINUS,       KC_DLR,         
+    KC_TRANSPARENT, KC_EXLM,        KC_QUES,        KC_LPRN,        KC_RPRN,        KC_AMPR,                                        KC_SLASH,       KC_4,           KC_5,           KC_6,           KC_PLUS,        KC_PERC,        
+    KC_PIPE,        KC_LABK,        KC_RABK,        KC_LBRC,        KC_RBRC,        KC_BSLS,                                        KC_EQUAL,       KC_7,           KC_8,           KC_9,           KC_ENTER,       KC_TILD,        
                                                     KC_TRANSPARENT, TO(0),                                          TO(3),          KC_0
   ),
   [2] = LAYOUT_voyager(
-    KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,                                          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         
-    KC_TRANSPARENT, HSV_193_230_116,KC_HOME,        KC_UP,          KC_END,         KC_PAGE_UP,                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_DELETE,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDN,                                        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, RGB_SAD,        RGB_SAI,        RGB_VAD,        RGB_VAI,        RGB_MODE_FORWARD,                                KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-                                                    OSM(MOD_LALT),  OSM(MOD_LGUI),                                  TO(0),          KC_TRANSPARENT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, HSV_193_230_116,KC_HOME,        KC_UP,          KC_END,         KC_PAGE_UP,                                     KC_ASTR,        KC_1,           KC_2,           KC_3,           KC_MINUS,       KC_DLR,         
+    KC_TRANSPARENT, KC_DELETE,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDN,                                        KC_SLASH,       KC_4,           KC_5,           KC_6,           KC_PLUS,        KC_PERC,        
+    KC_TRANSPARENT, RGB_SAD,        RGB_SAI,        RGB_VAD,        RGB_VAI,        OSM(MOD_LSFT),                                  KC_EQUAL,       KC_7,           KC_8,           KC_9,           KC_ENTER,       KC_TILD,        
+                                                    OSM(MOD_LALT),  OSM(MOD_LGUI),                                  TO(0),          KC_0
   ),
   [3] = LAYOUT_voyager(
     KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_RIGHT_GUI,   
