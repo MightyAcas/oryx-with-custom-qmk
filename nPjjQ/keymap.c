@@ -41,8 +41,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-const uint16_t PROGMEM combo0[] = { OSL(1), KC_SPACE, COMBO_END};
-const uint16_t PROGMEM combo1[] = { OSM(MOD_LALT), OSM(MOD_LGUI), COMBO_END};
+const uint16_t PROGMEM combo0[] = { KC_M, KC_T, COMBO_END};
+const uint16_t PROGMEM combo1[] = { KC_UP, KC_DOWN, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, TO(2)),
