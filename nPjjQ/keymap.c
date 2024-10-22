@@ -7,6 +7,7 @@
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
   HSV_193_230_116,
+  T_S_C,
 };
 
 
@@ -27,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_TRANSPARENT, TO(0),                                          TO(3),          KC_0
   ),
   [2] = LAYOUT_voyager(
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, T_S_C, 
     KC_TRANSPARENT, HSV_193_230_116,KC_HOME,        KC_UP,          KC_END,         KC_PAGE_UP,                                     KC_ASTR,        KC_1,           KC_2,           KC_3,           KC_MINUS,       KC_DLR,         
     KC_TRANSPARENT, KC_DELETE,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDN,                                        KC_SLASH,       KC_4,           KC_5,           KC_6,           KC_PLUS,        KC_PERC,        
     KC_TRANSPARENT, RGB_SAD,        RGB_SAI,        RGB_VAD,        RGB_VAI,        OSM(MOD_LSFT),                                  KC_EQUAL,       KC_7,           KC_8,           KC_9,           KC_ENTER,       KC_TILD,        
@@ -59,7 +60,6 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_F: return KC_T;
         case KC_G: return KC_H;
         case KC_I: return KC_X;
-        case KC_L: return KC_Y;
         case KC_P: return KC_T;
         case KC_R: return KC_K;
         case KC_S: return KC_K;
@@ -72,6 +72,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_sentence_case(keycode, record)) { return false; }
   switch (keycode) {
 
+    case T_S_C:
+      // When the custom keycode is pressed, switch the value of the boolean variable and call the toggle function
+      if (record->event.pressed) {
+        sentence_case_toggle();
+      }
+      return false; // Skip all further processing of this key
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
