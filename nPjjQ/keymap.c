@@ -1,11 +1,13 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "features/sentence_case.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
   HSV_193_230_116,
+  T_S_C,
 };
 
 
@@ -15,7 +17,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESCAPE,      KC_RIGHT_GUI,   OSM(MOD_LALT),  KC_MS_BTN2,     KC_MS_BTN1,     LGUI(KC_DOT),                                   KC_CAPS,        KC_MEDIA_PLAY_PAUSE,KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_PSCR,        RGB_TOG,        
     KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_B,                                           KC_X,           KC_L,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_Y,           KC_N,           KC_A,           KC_E,           KC_I,           KC_COMMA,       
-    OSM(MOD_LCTL),  KC_Q,           KC_V,           KC_G,           KC_D,           KC_K,                                           KC_Z,           KC_SLASH,       KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
+    OSM(MOD_LCTL),  KC_Q,           KC_V,           KC_G,           KC_D,           KC_K,                                           KC_Z,           QK_AREP,        KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
                                                     KC_SPACE,       OSL(1),                                         TO(2),          OSM(MOD_RSFT)
   ),
   [1] = LAYOUT_voyager(
@@ -26,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                     KC_TRANSPARENT, TO(0),                                          TO(3),          KC_0
   ),
   [2] = LAYOUT_voyager(
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, T_S_C, 
     KC_TRANSPARENT, HSV_193_230_116,KC_HOME,        KC_UP,          KC_END,         KC_PAGE_UP,                                     KC_ASTR,        KC_1,           KC_2,           KC_3,           KC_MINUS,       KC_DLR,         
     KC_TRANSPARENT, KC_DELETE,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDN,                                        KC_SLASH,       KC_4,           KC_5,           KC_6,           KC_PLUS,        KC_PERC,        
     KC_TRANSPARENT, RGB_SAD,        RGB_SAI,        RGB_VAD,        RGB_VAI,        OSM(MOD_LSFT),                                  KC_EQUAL,       KC_7,           KC_8,           KC_9,           KC_ENTER,       KC_TILD,        
@@ -44,9 +46,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case KC_B: return KC_T;
+        case KC_C: return KC_K;
+        case KC_F: return KC_T;
+        case KC_G: return KC_H;
+        case KC_P: return KC_T;
+        case KC_R: return KC_K;
+        case KC_S: return KC_K;
+        case KC_QUOT: return KC_L;
+    }
+    return KC_SLSH;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_sentence_case(keycode, record)) { return false; }
   switch (keycode) {
 
+    case T_S_C:
+      // When the custom keycode is pressed, switch the value of the boolean variable and call the toggle function
+      if (record->event.pressed) {
+        sentence_case_toggle();
+      }
+      return false; // Skip all further processing of this key
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
