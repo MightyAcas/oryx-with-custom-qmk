@@ -145,7 +145,6 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_C: return KC_K;
         case KC_QUOTE: return KC_L;
-        case KC_L: return KC_L;
       
         case KC_G: return KC_H;
         case KC_P: return KC_T;
