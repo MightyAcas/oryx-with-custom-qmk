@@ -51,7 +51,7 @@ const uint16_t PROGMEM combo4[] = { KC_M, KC_T, COMBO_END};
 const uint16_t PROGMEM combo5[] = { KC_O, KC_A, COMBO_END};
 const uint16_t PROGMEM combo6[] = { KC_C, KC_M, COMBO_END};
 const uint16_t PROGMEM combo7[] = { KC_H, KC_D, COMBO_END};
-const uint16_t PROGMEM combo8[] = { KC_N, KC_SLASH, COMBO_END};
+const uint16_t PROGMEM combo8[] = { KC_N, QK_AREP, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, KC_LBRC),
