@@ -14,7 +14,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
-    KC_ESCAPE,      KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_RIGHT_GUI,   
+    KC_ESCAPE,      KC_LABK,        KC_LCBR,        KC_LBRC,        KC_LPRN,        OSM(MOD_LALT),                                  KC_CAPS,        KC_RPRN,        KC_RBRC,        KC_RCBR,        KC_RABK,        KC_RIGHT_GUI,  
     KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_B,                                           KC_X,           KC_L,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_Y,           KC_N,           KC_A,           KC_E,           KC_I,           KC_COMMA,       
     OSM(MOD_LCTL),  KC_Q,           KC_V,           KC_G,           KC_D,           KC_K,                                           KC_Z,           QK_AREP,        KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
@@ -43,27 +43,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-const uint16_t PROGMEM combo0[] = { KC_T, KC_G, COMBO_END};
-const uint16_t PROGMEM combo1[] = { KC_A, KC_QUOTE, COMBO_END};
-const uint16_t PROGMEM combo2[] = { KC_P, KC_H, COMBO_END};
-const uint16_t PROGMEM combo3[] = { KC_L, KC_N, COMBO_END};
-const uint16_t PROGMEM combo4[] = { KC_M, KC_T, COMBO_END};
-const uint16_t PROGMEM combo5[] = { KC_O, KC_A, COMBO_END};
-const uint16_t PROGMEM combo6[] = { KC_C, KC_M, COMBO_END};
-const uint16_t PROGMEM combo7[] = { KC_H, KC_D, COMBO_END};
-const uint16_t PROGMEM combo8[] = { KC_N, QK_AREP, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo0, KC_LBRC),
-    COMBO(combo1, KC_RBRC),
-    COMBO(combo2, KC_LCBR),
-    COMBO(combo3, KC_RCBR),
-    COMBO(combo4, KC_LABK),
-    COMBO(combo5, KC_RABK),
-    COMBO(combo6, OSM(MOD_LALT)),
-    COMBO(combo7, KC_LPRN),
-    COMBO(combo8, KC_RPRN),
-};
 
 
 extern rgb_config_t rgb_matrix_config;
