@@ -3,12 +3,15 @@
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
+#include "features/sentence_case.h"
+
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
   ST_MACRO_0,
   ST_MACRO_1,
   ST_MACRO_2,
   ST_MACRO_3,
+  T_S_C,
 };
 
 
@@ -18,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESCAPE,      ST_MACRO_0,     ST_MACRO_1,     KC_LBRC,        KC_LPRN,        OSM(MOD_LALT),                                  KC_CAPS,        KC_RPRN,        KC_RBRC,        ST_MACRO_2,     ST_MACRO_3,     KC_RIGHT_GUI,  
     KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_B,                                           KC_X,           KC_L,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_Y,           KC_N,           KC_A,           KC_E,           KC_I,           KC_COMMA,       
-    OSM(MOD_LCTL),  KC_Q,           KC_V,           KC_G,           KC_D,           KC_K,                                           KC_Z,           KC_SLASH,       KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
+    OSM(MOD_LCTL),  KC_Q,           KC_V,           KC_G,           KC_D,           KC_K,                                           KC_Z,           QK_AREP,        KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
                                                     KC_SPACE,       OSL(1),                                         OSL(2),         OSM(MOD_RSFT)
   ),
   [1] = LAYOUT_voyager(
@@ -32,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, RGB_VAI,        KC_HOME,        KC_UP,          KC_END,         KC_PAGE_UP,                                     KC_PIPE,        KC_AMPR,        KC_QUES,        KC_EXLM,        KC_TILD,        KC_TRANSPARENT, 
     KC_TRANSPARENT, RGB_VAD,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDN,                                        KC_BSLS,        KC_DLR,         KC_PERC,        KC_CIRC,        KC_GRAVE,       KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          KC_NO,          QK_LLCK,        KC_AT,          KC_HASH,        KC_NO,          KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                          T_S_C,          QK_LLCK,        KC_AT,          KC_HASH,        KC_NO,          KC_TRANSPARENT, 
                                                     KC_LEFT_GUI,    OSM(MOD_LALT),                                  TO(0),          KC_NO
   ),
   [3] = LAYOUT_voyager(
@@ -102,6 +105,7 @@ bool rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_sentence_case(keycode, record)) { return false; }
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {
@@ -124,6 +128,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     break;
 
+    case T_S_C:
+      // When the custom keycode is pressed, switch the value of the boolean variable and call the toggle function
+      if (record->event.pressed) {
+        sentence_case_toggle();
+      }
+      return false; // Skip all further processing of this key
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
@@ -133,5 +143,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+
+
+// Custom QMK
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case KC_C: return KC_K;
+        case KC_QUOTE: return KC_L;
+      
+        case KC_G: return KC_H;
+        case KC_P: return KC_T;
+        case KC_R: return KC_K;
+      
+        case KC_S: return KC_C;
+        case KC_W: return KC_R;
+      
+        case KC_F: return KC_T;
+      
+        case KC_B: return KC_T;
+        case KC_A: return KC_X;
+        case KC_E: return KC_X;
+        case KC_I: return KC_X;
+    }
+    return KC_SLASH;
+}
 
 
