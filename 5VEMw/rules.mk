@@ -10,5 +10,5 @@ LAYER_LOCK_ENABLE = yes
 
 
 REPEAT_KEY_ENABLE = yes
-AUTOCORRECT_ENABLE = yes
+SRC += features/autocorrection.c
 SRC += features/sentence_case.c
