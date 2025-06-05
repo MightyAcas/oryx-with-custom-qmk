@@ -3,19 +3,25 @@
   See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
 */
 
+#define FLOW_TAP_TERM 300
+#define CHORDAL_HOLD
+#undef TAPPING_TERM
+#define TAPPING_TERM 300
+
 #undef ONESHOT_TIMEOUT
 #define ONESHOT_TIMEOUT 2000
 
 #define PERMISSIVE_HOLD
 
+#define QUICK_TAP_TERM 0
+
 #define COMBO_TERM 30
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
 #define CAPS_LOCK_STATUS
-#define HOLD_ON_OTHER_KEY_PRESS
-#define SERIAL_NUMBER "nPjjQ/LvaBeM"
+#define SERIAL_NUMBER "nPjjQ/m5q9PX"
 #define LAYER_STATE_8BIT
-#define COMBO_COUNT 5
+#define COMBO_COUNT 11
 
 #define RGB_MATRIX_STARTUP_SPD 60
 
