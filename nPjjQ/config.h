@@ -1,8 +1,3 @@
-/*
-  Set any config.h overrides for your specific keymap here.
-  See config.h options at https://docs.qmk.fm/#/config_options?id=the-configh-file
-*/
-
 #define FLOW_TAP_TERM 300
 #define CHORDAL_HOLD
 #undef TAPPING_TERM
