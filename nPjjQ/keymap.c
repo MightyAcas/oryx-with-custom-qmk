@@ -186,4 +186,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+// Exclude Space from Tap Flow
+bool is_flow_tap_key(uint16_t keycode) {
+    if ((get_mods() & (MOD_MASK_CG | MOD_BIT_LALT)) != 0) {
+        return false; // Disable Flow Tap on hotkeys.
+    }
+    switch (get_tap_keycode(keycode)) {
+        // Flow tap is enabled only for these keys.
+        case KC_A ... KC_Z:
+        case KC_DOT:
+        case KC_COMM:
+        case KC_SCLN:
+        case KC_SLSH:
+            return true;
+    }
+    return false;
+}
+
+// Magic Key Rules
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case KC_QUOTE: return KC_L;
+
+        case KC_W: return KC_R;
+        case KC_S: return KC_C;
+  
+        case KC_F: return KC_T;
+        case KC_P: return KC_T;
+
+        case KC_B: return KC_T;
+      
+        case KC_G: return KC_H;
+        case KC_M: return KC_B;
+
+        case KC_C: return KC_K;
+        case KC_R: return KC_K;
+        case KC_A: return KC_Y;
+        case KC_E: return KC_X;
+        case KC_I: return KC_X;
+    }
+    return KC_SLASH;
+}
 
