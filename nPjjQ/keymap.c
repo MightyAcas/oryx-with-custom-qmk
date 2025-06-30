@@ -16,10 +16,10 @@ enum custom_keycodes {
 
 
 
-#define DUAL_FUNC_0 LT(12, KC_4)
-#define DUAL_FUNC_1 LT(4, KC_F10)
-#define DUAL_FUNC_2 LT(3, KC_3)
-#define DUAL_FUNC_3 LT(15, KC_Y)
+#define DUAL_FUNC_0 LT(10, KC_F13)
+#define DUAL_FUNC_1 LT(11, KC_1)
+#define DUAL_FUNC_2 LT(3, KC_G)
+#define DUAL_FUNC_3 LT(7, KC_F19)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -62,28 +62,26 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
 
 const uint16_t PROGMEM combo0[] = { KC_V, KC_B, COMBO_END};
 const uint16_t PROGMEM combo1[] = { KC_TAB, KC_Q, COMBO_END};
-const uint16_t PROGMEM combo2[] = { MT(MOD_RCTL, KC_A), KC_QUOTE, COMBO_END};
-const uint16_t PROGMEM combo3[] = { KC_P, MT(MOD_LSFT, KC_H), COMBO_END};
-const uint16_t PROGMEM combo4[] = { KC_L, MT(MOD_RSFT, KC_N), COMBO_END};
-const uint16_t PROGMEM combo5[] = { KC_M, MT(MOD_LCTL, KC_T), COMBO_END};
-const uint16_t PROGMEM combo6[] = { KC_O, MT(MOD_RCTL, KC_A), COMBO_END};
-const uint16_t PROGMEM combo7[] = { KC_TAB, KC_BSPC, COMBO_END};
-const uint16_t PROGMEM combo8[] = { KC_MINUS, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM combo9[] = { KC_BSPC, LCTL(KC_Z), COMBO_END};
-const uint16_t PROGMEM combo10[] = { KC_COMMA, KC_ENTER, COMBO_END};
+const uint16_t PROGMEM combo2[] = { KC_P, MT(MOD_LSFT, KC_H), COMBO_END};
+const uint16_t PROGMEM combo3[] = { KC_L, MT(MOD_RSFT, KC_N), COMBO_END};
+const uint16_t PROGMEM combo4[] = { KC_M, MT(MOD_LCTL, KC_T), COMBO_END};
+const uint16_t PROGMEM combo5[] = { KC_O, MT(MOD_RCTL, KC_A), COMBO_END};
+const uint16_t PROGMEM combo6[] = { MT(MOD_LALT, KC_C), KC_S, COMBO_END};
+const uint16_t PROGMEM combo7[] = { MT(MOD_RALT, KC_U), KC_E, COMBO_END};
+const uint16_t PROGMEM combo8[] = { MT(MOD_LGUI, KC_W), KC_R, COMBO_END};
+const uint16_t PROGMEM combo9[] = { MT(MOD_RGUI, KC_J), KC_I, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, TO(0)),
     COMBO(combo1, KC_ESCAPE),
-    COMBO(combo2, KC_DQUO),
-    COMBO(combo3, KC_LPRN),
-    COMBO(combo4, KC_RPRN),
-    COMBO(combo5, KC_LBRC),
-    COMBO(combo6, KC_RBRC),
-    COMBO(combo7, KC_LCBR),
-    COMBO(combo8, KC_RCBR),
-    COMBO(combo9, KC_LABK),
-    COMBO(combo10, KC_RABK),
+    COMBO(combo2, KC_LPRN),
+    COMBO(combo3, KC_RPRN),
+    COMBO(combo4, KC_LBRC),
+    COMBO(combo5, KC_RBRC),
+    COMBO(combo6, KC_LCBR),
+    COMBO(combo7, KC_RCBR),
+    COMBO(combo8, KC_LABK),
+    COMBO(combo9, KC_RABK),
 };
 
 
