@@ -185,3 +185,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 
+// Magic Key Rules
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+        case KC_QUOTE: return KC_L;
+
+        case KC_W: return KC_R;
+        case KC_S: return KC_C;
+  
+        case KC_F: return KC_T;
+        case KC_P: return KC_T;
+
+        case KC_B: return KC_T;
+      
+        case KC_G: return KC_H;
+        case KC_M: return KC_B;
+
+        case KC_C: return KC_K;
+        case KC_R: return KC_K;
+        case KC_A: return KC_Y;
+        case KC_E: return KC_X;
+        case KC_I: return KC_X;
+    }
+    return KC_SLASH;
+}
