@@ -202,13 +202,12 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         // 1u SFB
         case KC_S: return KC_C;
 
-        // 2u cLSB
-        case KC_C: return KC_K;
         // 1u dLSB
         case KC_B: return KC_T;
         case KC_R: return KC_K;
-        // 1u LSB
+        // LSB
         case KC_A: return KC_Y;
+        case KC_C: return KC_K;
         case KC_E: return KC_Y;
         // 1u cLSB
         case KC_M: return KC_B;
