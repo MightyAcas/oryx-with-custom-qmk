@@ -212,7 +212,6 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_E: return KC_Y;
         // 1u cLSB
         case KC_M: return KC_B;
-
     }
     return KC_SLASH;
 }
