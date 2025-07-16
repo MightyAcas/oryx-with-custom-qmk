@@ -195,22 +195,15 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         // 1u dFSB
         case KC_QUOTE: return KC_L;
         // 1u dHSB
-        case KC_P: return KC_T;
-        // 2u dHSB
-        case KC_G: return KC_H;
-      
-        // 1u SFB
-        case KC_S: return KC_C;
+        case KC_G: return KC_R;
 
         // 1u dLSB
-        case KC_B: return KC_T;
         case KC_R: return KC_K;
         // LSB
         case KC_A: return KC_Y;
         case KC_C: return KC_K;
-        case KC_E: return KC_Y;
         // 1u cLSB
         case KC_M: return KC_B;
     }
-    return KC_SLASH;
+    return QK_REP;
 }
