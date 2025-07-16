@@ -15,10 +15,10 @@ enum custom_keycodes {
 
 
 
-#define DUAL_FUNC_0 LT(12, KC_7)
-#define DUAL_FUNC_1 LT(8, KC_4)
-#define DUAL_FUNC_2 LT(11, KC_Y)
-#define DUAL_FUNC_3 LT(6, KC_Q)
+#define DUAL_FUNC_0 LT(3, KC_3)
+#define DUAL_FUNC_1 LT(7, KC_M)
+#define DUAL_FUNC_2 LT(12, KC_K)
+#define DUAL_FUNC_3 LT(13, KC_F9)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -69,11 +69,6 @@ const uint16_t PROGMEM combo6[] = { KC_S, KC_C, COMBO_END};
 const uint16_t PROGMEM combo7[] = { KC_E, KC_U, COMBO_END};
 const uint16_t PROGMEM combo8[] = { KC_R, KC_W, COMBO_END};
 const uint16_t PROGMEM combo9[] = { KC_I, KC_J, COMBO_END};
-const uint16_t PROGMEM combo10[] = { KC_B, KC_V, COMBO_END};
-const uint16_t PROGMEM combo11[] = { KC_H, KC_F, COMBO_END};
-const uint16_t PROGMEM combo12[] = { KC_T, KC_D, COMBO_END};
-const uint16_t PROGMEM combo13[] = { KC_S, KC_G, COMBO_END};
-const uint16_t PROGMEM combo14[] = { KC_R, KC_Q, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, TO(0)),
@@ -86,11 +81,6 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo7, KC_RCBR),
     COMBO(combo8, KC_LABK),
     COMBO(combo9, KC_RABK),
-    COMBO(combo10, LCTL(KC_V)),
-    COMBO(combo11, LCTL(KC_F)),
-    COMBO(combo12, LCTL(KC_T)),
-    COMBO(combo13, LCTL(KC_C)),
-    COMBO(combo14, LCTL(KC_W)),
 };
 
 
