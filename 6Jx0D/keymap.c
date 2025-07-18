@@ -5,6 +5,13 @@
 #define ZSA_SAFE_RANGE SAFE_RANGE
 #endif
 
+bool alpha_pressed = false; // variable for timer to disable arcane key functionality after no letter has been pressed for x amount of time
+bool dot_trigger = false; //. pressed previously?
+bool comma_trigger = false; //comma pressed previously?
+bool shift_trigger = false; //was key shifted?
+uint16_t arcane_timer = 0;     // timer 
+uint16_t last_key_manual = 0; // for timer reset
+
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
   ST_MACRO_0,
@@ -83,127 +90,6 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo8, KC_LABK),
     COMBO(combo9, KC_RABK),
 };
-
-
-
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case ARCANE_L: 
-               if (record->event.pressed && layer_state_is(0)) {
-                 if (get_oneshot_mods() & MOD_MASK_SHIFT) {
-                    caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
-               } else {
-                   if (alpha_pressed) {// letter was pressed within timer limits
-                     arcane_timer = timer_read(); // reset timer
-                     process_arcane_l(get_last_keycode(), get_last_mods()); // call arcane code
-                     j_trigger = false;
-                     d_trigger = false;
-                     u_trigger = false;
-                     n_trigger = false;
-                     g_trigger = false;
-                     a_trigger = false;
-                     x_trigger = false;
-                     i_trigger = false;
-                     r_trigger = false;
-                     dot_trigger = false;
-                     comma_trigger = false;
-                     shift_trigger = false;
-                   } else {//alpha timer timed out, so key functions just as a OSM shift
-                      set_oneshot_mods(MOD_BIT(KC_LSFT));
-                   }
-                 }
-               }
-       break; 
-    case ST_MACRO_0:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_2) SS_TAP(X_KP_0) ));
-    }
-    break;
-    case ST_MACRO_1:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_2) SS_TAP(X_KP_1) ));
-    }
-    break;
-    case ST_MACRO_2:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_5) SS_TAP(X_KP_0) ));
-    }
-    break;
-    case ST_MACRO_3:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_5) SS_TAP(X_KP_1) ));
-    }
-    break;
-
-    case DUAL_FUNC_0:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_CIRC);
-        } else {
-          unregister_code16(KC_CIRC);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_RIGHT_ALT);
-        } else {
-          unregister_code16(KC_RIGHT_ALT);
-        }  
-      }  
-      return false;
-    case DUAL_FUNC_1:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_PERC);
-        } else {
-          unregister_code16(KC_PERC);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_RIGHT_CTRL);
-        } else {
-          unregister_code16(KC_RIGHT_CTRL);
-        }  
-      }  
-      return false;
-    case DUAL_FUNC_2:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_DLR);
-        } else {
-          unregister_code16(KC_DLR);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_RIGHT_SHIFT);
-        } else {
-          unregister_code16(KC_RIGHT_SHIFT);
-        }  
-      }  
-      return false;
-    case DUAL_FUNC_3:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_PLUS);
-        } else {
-          unregister_code16(KC_PLUS);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_RIGHT_GUI);
-        } else {
-          unregister_code16(KC_RIGHT_GUI);
-        }  
-      }  
-      return false;
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-  }
-  return true;
-}
 
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
@@ -497,16 +383,6 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
 void matrix_scan_user(void) { // The very important timer.
   if (alpha_pressed && timer_elapsed(arcane_timer) > 1000) { //triggers when timer elapsed
       alpha_pressed = false;
-      j_trigger = false;
-      d_trigger = false;
-      u_trigger = false;
-      n_trigger = false;
-      g_trigger = false;
-      a_trigger = false;
-      x_trigger = false;
-      i_trigger = false;
-      r_trigger = false;
-      l_trigger = false;
       dot_trigger = false;
       comma_trigger = false;
       shift_trigger = false;
@@ -530,16 +406,6 @@ void matrix_scan_user(void) { // The very important timer.
       case RCTL(KC_BSPC):
       last_key_manual = get_last_keycode();
       alpha_pressed = false;
-      j_trigger = false;
-      d_trigger = false;
-      u_trigger = false;
-      n_trigger = false;
-      g_trigger = false;
-      a_trigger = false;
-      x_trigger = false;
-      i_trigger = false;
-      r_trigger = false;
-      l_trigger = false;
       dot_trigger = false;
       comma_trigger = false;
       shift_trigger = false;
@@ -547,6 +413,154 @@ void matrix_scan_user(void) { // The very important timer.
     }
   }
 }
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case KC_COMMA:
+      if (record->event.pressed && layer_state_is(0)) {
+            if (dot_trigger) {
+               if (is_caps_word_on()) { //checks for caps word status
+              SEND_STRING(SS_TAP(X_BSPC) SS_RSFT(SS_TAP(X_QUOTE)) SS_RSFT(SS_TAP(X_O)));
+            } else if (shift_trigger) { 
+              SEND_STRING(SS_TAP(X_BSPC) SS_RSFT(SS_TAP(X_QUOTE)) SS_RSFT(SS_TAP(X_O)));
+            } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_BSPC) SS_RSFT(SS_TAP(X_QUOTE)) SS_TAP(X_O));
+            }
+            dot_trigger = false;
+            shift_trigger = false;
+            set_last_keycode(KC_D);
+            return false;
+            } else {
+        dot_trigger = false;
+        comma_trigger = true;
+        shift_trigger = false;
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          shift_trigger = true;
+        }
+      }
+      }
+    break;
+    case KC_DOT:
+    if (record->event.pressed && layer_state_is(0)) {
+        dot_trigger = true;
+        comma_trigger = false;
+        shift_trigger = false;
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          shift_trigger = true;
+        }
+      }
+    break;
+    case ARCANE_L: 
+               if (record->event.pressed && layer_state_is(0)) {
+                 if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+                    caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+               } else {
+                   if (alpha_pressed) {// letter was pressed within timer limits
+                     arcane_timer = timer_read(); // reset timer
+                     process_arcane_l(get_last_keycode(), get_last_mods()); // call arcane code
+                     dot_trigger = false;
+                     comma_trigger = false;
+                     shift_trigger = false;
+                   } else {//alpha timer timed out, so key functions just as a OSM shift
+                      set_oneshot_mods(MOD_BIT(KC_LSFT));
+                   }
+                 }
+               }
+       break; 
+    case ST_MACRO_0:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_KP_2) SS_TAP(X_KP_0) ));
+    }
+    break;
+    case ST_MACRO_1:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_KP_2) SS_TAP(X_KP_1) ));
+    }
+    break;
+    case ST_MACRO_2:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_5) SS_TAP(X_KP_0) ));
+    }
+    break;
+    case ST_MACRO_3:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_5) SS_TAP(X_KP_1) ));
+    }
+    break;
+
+    case DUAL_FUNC_0:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          register_code16(KC_CIRC);
+        } else {
+          unregister_code16(KC_CIRC);
+        }
+      } else {
+        if (record->event.pressed) {
+          register_code16(KC_RIGHT_ALT);
+        } else {
+          unregister_code16(KC_RIGHT_ALT);
+        }  
+      }  
+      return false;
+    case DUAL_FUNC_1:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          register_code16(KC_PERC);
+        } else {
+          unregister_code16(KC_PERC);
+        }
+      } else {
+        if (record->event.pressed) {
+          register_code16(KC_RIGHT_CTRL);
+        } else {
+          unregister_code16(KC_RIGHT_CTRL);
+        }  
+      }  
+      return false;
+    case DUAL_FUNC_2:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          register_code16(KC_DLR);
+        } else {
+          unregister_code16(KC_DLR);
+        }
+      } else {
+        if (record->event.pressed) {
+          register_code16(KC_RIGHT_SHIFT);
+        } else {
+          unregister_code16(KC_RIGHT_SHIFT);
+        }  
+      }  
+      return false;
+    case DUAL_FUNC_3:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          register_code16(KC_PLUS);
+        } else {
+          unregister_code16(KC_PLUS);
+        }
+      } else {
+        if (record->event.pressed) {
+          register_code16(KC_RIGHT_GUI);
+        } else {
+          unregister_code16(KC_RIGHT_GUI);
+        }  
+      }  
+      return false;
+    case RGB_SLD:
+      if (record->event.pressed) {
+        rgblight_mode(1);
+      }
+      return false;
+  }
+  return true;
+}
+
+
+
+
+
 
 // Magic Key Rules
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
