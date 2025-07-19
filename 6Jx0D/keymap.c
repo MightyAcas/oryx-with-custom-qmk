@@ -127,11 +127,11 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_A:
           if (is_caps_word_on()) { //checks for caps word status
-              send_string("L");
+              send_string("Y");
           } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("l");
+              send_string("y");
           } else { //unshifted previous key
-              send_string("l");
+              send_string("y");
           }
          break;        
         case KC_B:
@@ -226,11 +226,11 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
          break;
         case KC_L:
           if (is_caps_word_on()) { //checks for caps word status
-              send_string("L");
+              send_string("Y");
           } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("l");
+              send_string("y");
           } else { //unshifted previous key
-              send_string("l");
+              send_string("y");
           }
          break;
         case KC_M:
@@ -244,11 +244,11 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
          break;
         case KC_N:
           if (is_caps_word_on()) { //checks for caps word status
-              send_string("N");
+              send_string("Y");
           } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("n");
+              send_string("y");
           } else { //unshifted previous key
-              send_string("n");
+              send_string("y");
           }
          break;
         case KC_O:
@@ -557,12 +557,12 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         // 1u dFSB
         case KC_QUOTE: return KC_L;
         // 1u dHSB
+        case KC_A: return KC_L;
         case KC_G: return KC_R;
 
         // 1u dLSB
         case KC_R: return KC_K;
         // LSB
-        case KC_A: return KC_Y;
         case KC_C: return KC_K;
         // 1u cLSB
         case KC_M: return KC_B;
