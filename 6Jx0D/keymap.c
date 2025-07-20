@@ -91,6 +91,13 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo9, KC_RABK),
 };
 
+// Everything below besides the Magic/First Y Key stuff is taken from wYvern1349's oryx with custom qmk repo
+// this implementation is capaple of having OSM shift, caps word, repeat, and magic all on the same key.
+// however, i've opted to not use magic or repeat in favor of using a single letter: Y. I'll be calling this Y_SHIFT.
+// to simplify, this key is only capable of 2 things: outputting Y if pressed after a letter, and outputting OSM SHIFT in all other cases.
+// this means that a separate magic key set with Y as the default output complements Y_SHIFT perfectly and should never conflict with each other while also covering each other's bases
+// it would get more complicated if I chose to expand Y_SHIFT beyond being its alpha output, so i'm choosing to keep it short and clean for the sake of my own sanity. but know that it's capable of really cool stuff that I'm not using!
+
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
@@ -330,7 +337,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 
-// Magic Key Rules
+// Magic/First Y Key Rules
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         // 1u dFSB
