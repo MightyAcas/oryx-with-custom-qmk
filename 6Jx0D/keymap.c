@@ -145,13 +145,13 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
          break;   
         case KC_C:
           if (is_caps_word_on()) { //checks for caps word status
-              send_string("K");
+              send_string("Y");
           } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("k");
+              send_string("y");
           } else { //unshifted previous key
-              send_string("k");
+              send_string("y");
           }
-         break;
+         break;   
         case KC_D:
           if (is_caps_word_on()) { //checks for caps word status
               send_string("Y");
@@ -181,13 +181,13 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
          break;   
         case KC_G:
           if (is_caps_word_on()) { //checks for caps word status
-              send_string("H");
+              send_string("Y");
           } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("h");
+              send_string("y");
           } else { //unshifted previous key
-              send_string("h");
+              send_string("y");
           }
-         break;
+         break;   
         case KC_H:
           if (is_caps_word_on()) { //checks for caps word status
               send_string("Y");
@@ -253,13 +253,13 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
          break;
         case KC_O:
           if (is_caps_word_on()) { //checks for caps word status
-              send_string("NLY");
+              send_string("Y");
           } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("nly");
+              send_string("y");
           } else { //unshifted previous key
-              send_string("nly");
+              send_string("y");
           }
-         break;
+         break;   
         case KC_P:
           if (is_caps_word_on()) { //checks for caps word status
               send_string("Y");
@@ -280,13 +280,13 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
          break;
         case KC_S:
           if (is_caps_word_on()) { //checks for caps word status
-              send_string("C");
+              send_string("Y");
           } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("c");
+              send_string("y");
           } else { //unshifted previous key
-              send_string("c");
+              send_string("y");
           }
-         break;
+         break;   
         case KC_T:
           if (is_caps_word_on()) { //checks for caps word status
               send_string("Y");
