@@ -338,6 +338,9 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         // 1u dHSB
         case KC_G: return KC_H;
 
+        // 1u dHSB
+        case KC_S: return KC_C;
+
         // 1u dLSB
         case KC_R: return KC_K;
         // LSB
@@ -345,6 +348,9 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_C: return KC_K;
         // 1u cLSB
         case KC_M: return KC_B;
+
+        // oh my god i hate the str weak redirect my feeble fingers cannot handle it
+        case KC_T: return KC_R;
     }
     return KC_Y;
 }
