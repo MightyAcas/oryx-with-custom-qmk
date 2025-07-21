@@ -188,7 +188,6 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_G: return KC_H;
       
         // LSB
-        case KC_A: return KC_Y;
         case KC_C: return KC_K;
 
         // redirects
@@ -196,5 +195,5 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_T: return KC_R;
         case KC_D: return KC_S;
     }
-    return KC_SLASH;
+    return KC_Y;
 }
