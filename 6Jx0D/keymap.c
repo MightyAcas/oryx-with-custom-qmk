@@ -175,6 +175,15 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
               send_string("y");
           }
          break;
+        case KC_M:
+          if (is_caps_word_on()) { //checks for caps word status
+              send_string("B");
+          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              send_string("b");
+          } else { //unshifted previous key
+              send_string("b");
+          }
+         break;
         case KC_S:
           if (is_caps_word_on()) { //checks for caps word status
               send_string("C");
@@ -191,6 +200,15 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
               send_string("r");
           } else { //unshifted previous key
               send_string("r");
+          }
+         break;
+        case KC_Z:
+          if (is_caps_word_on()) { //checks for caps word status
+              send_string("Y");
+          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              send_string("y");
+          } else { //unshifted previous key
+              send_string("y");
           }
          break;
       case KC_COMMA: //I'm using this as a "get one-shot shift to trigger within a word" key for abbreviations and the like... could wait for the timer to run out, but I lack the patience.
