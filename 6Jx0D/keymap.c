@@ -31,9 +31,9 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TAB,         KC_W,           KC_C,           KC_L,           KC_P,           KC_K,                                           KC_Z,           KC_Y,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
+    KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_Z,           KC_Y,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_B,                                           KC_X,           KC_N,           KC_A,           KC_E,           KC_I,           KC_COMMA,       
-    LCTL(KC_Z),     KC_Q,           KC_G,           KC_D,           KC_M,           KC_V,                                           KC_SLASH,       KC_F,           KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
+    LCTL(KC_Z),     KC_Q,           KC_G,           KC_D,           KC_F,           KC_V,                                           KC_CAPS,        KC_L,           KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
                                                     KC_SPACE,       OSL(1),                                         LCTL(KC_BSPC),  ARCANE_L
   ),
   [1] = LAYOUT_voyager(
@@ -70,7 +70,7 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
 const uint16_t PROGMEM combo0[] = { KC_B, KC_G, COMBO_END};
 const uint16_t PROGMEM combo1[] = { KC_TAB, KC_Q, COMBO_END};
 const uint16_t PROGMEM combo2[] = { KC_P, KC_H, COMBO_END};
-const uint16_t PROGMEM combo3[] = { KC_L, KC_N, COMBO_END};
+const uint16_t PROGMEM combo3[] = { KC_Y, KC_N, COMBO_END};
 const uint16_t PROGMEM combo4[] = { KC_M, KC_T, COMBO_END};
 const uint16_t PROGMEM combo5[] = { KC_O, KC_A, COMBO_END};
 const uint16_t PROGMEM combo6[] = { KC_S, KC_C, COMBO_END};
@@ -130,17 +130,8 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
 
 static void process_arcane_l(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
-      //sfbs
-        case KC_D:
-          if (is_caps_word_on()) {
-              send_string("L");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("l");
-          } else {
-              send_string("l");
-          }
-         break;
-        case KC_G:
+      case KC_G:
+          //sfbs
           if (is_caps_word_on()) { //checks for caps word status
               send_string("S");
           } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
@@ -151,20 +142,11 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
          break;
         case KC_L:
           if (is_caps_word_on()) {
-              send_string("D");
+              send_string("Y");
           } else if (mods & MOD_MASK_SHIFT) {
-              send_string("d");
+              send_string("y");
           } else {
-              send_string("d");
-          }
-         break;
-        case KC_M:
-          if (is_caps_word_on()) {
-              send_string("P");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("p");
-          } else {
-              send_string("p");
+              send_string("y");
           }
          break;
         case KC_N:
@@ -194,32 +176,13 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
               send_string("r");
           }
          break;
-      //2u scissors
-        case KC_U:
+        case KC_Y:
           if (is_caps_word_on()) {
-              send_string("'");
+              send_string("L");
           } else if (mods & MOD_MASK_SHIFT) {
-              send_string("'");
+              send_string("l");
           } else {
-              send_string("'");
-          }
-         break;
-        case KC_F:
-          if (is_caps_word_on()) {
-              send_string("O");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("o");
-          } else {
-              send_string("o");
-          }
-         break;
-        case KC_O:
-          if (is_caps_word_on()) {
-              send_string("F");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("f");
-          } else {
-              send_string("f");
+              send_string("l");
           }
          break;
       //1u scissors
@@ -237,7 +200,7 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
               send_string("Y");
           } else if (mods & MOD_MASK_SHIFT) {
               send_string("y");
-          } else {
+          } else { 
               send_string("y");
           }
          break;
@@ -249,6 +212,15 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
               send_string("k");
           } else { 
               send_string("k");
+          }
+         break;
+        case KC_M:
+          if (is_caps_word_on()) {
+              send_string("B");
+          } else if (mods & MOD_MASK_SHIFT) {
+              send_string("b");
+          } else {
+              send_string("b");
           }
          break;
       //redirects
@@ -263,11 +235,11 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
          break;
         case KC_T:
           if (is_caps_word_on()) {
-              send_string("R");
+              send_string("H");
           } else if (mods & MOD_MASK_SHIFT) {
-              send_string("r");
+              send_string("h");
           } else {
-              send_string("r");
+              send_string("h");
           }
          break;
       case KC_COMMA: //I'm using this as a "get one-shot shift to trigger within a word" key for abbreviations and the like... could wait for the timer to run out, but I lack the patience.
