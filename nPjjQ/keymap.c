@@ -23,16 +23,16 @@ enum custom_keycodes {
 
 
 
-#define DUAL_FUNC_0 LT(6, KC_F11)
-#define DUAL_FUNC_1 LT(4, KC_L)
-#define DUAL_FUNC_2 LT(2, KC_F9)
-#define DUAL_FUNC_3 LT(2, KC_G)
+#define DUAL_FUNC_0 LT(13, KC_1)
+#define DUAL_FUNC_1 LT(9, KC_F8)
+#define DUAL_FUNC_2 LT(2, KC_F6)
+#define DUAL_FUNC_3 LT(15, KC_F24)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_X,           KC_L,           KC_O,           KC_U,           KC_Y,           KC_MINUS,       
-    KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_B,                                           KC_J,           KC_N,           KC_A,           KC_E,           KC_I,           KC_CAPS,       
+    KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_B,                                           KC_J,           KC_N,           KC_A,           KC_E,           KC_I,           KC_CAPS,        
     LCTL(KC_Z),     KC_Q,           KC_G,           KC_D,           KC_F,           KC_V,                                           KC_Z,           KC_COMMA,       KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
                                                     KC_SPACE,       OSL(1),                                         LCTL(KC_BSPC),  ARCANE_L
   ),
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_PAGE_UP,     KC_HOME,        KC_UP,          KC_END,         TO(3),          ST_MACRO_2,     
     KC_BSPC,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_PGDN,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_LEFT_GUI,    ST_MACRO_3,     
-    KC_LEFT_CTRL,   KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_PSCR,        QK_LLCK,        KC_CAPS,        KC_NUM,         RGB_MODE_FORWARD,          KC_TRANSPARENT, 
+    KC_LEFT_CTRL,   KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_PSCR,        QK_LLCK,        KC_CAPS,        KC_NUM,         RGB_MODE_FORWARD,KC_TRANSPARENT, 
                                                     KC_TRANSPARENT, TO(0),                                          KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [3] = LAYOUT_voyager(
@@ -75,7 +75,7 @@ const uint16_t PROGMEM combo4[] = { KC_M, KC_T, COMBO_END};
 const uint16_t PROGMEM combo5[] = { KC_O, KC_A, COMBO_END};
 const uint16_t PROGMEM combo6[] = { KC_S, KC_C, COMBO_END};
 const uint16_t PROGMEM combo7[] = { KC_E, KC_U, COMBO_END};
-const uint16_t PROGMEM combo8[] = { KC_W, KC_R, COMBO_END};
+const uint16_t PROGMEM combo8[] = { KC_R, KC_W, COMBO_END};
 const uint16_t PROGMEM combo9[] = { KC_Y, KC_I, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
