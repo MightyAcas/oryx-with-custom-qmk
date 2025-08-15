@@ -5,20 +5,12 @@
 #define ZSA_SAFE_RANGE SAFE_RANGE
 #endif
 
-bool alpha_pressed = false; // variable for timer to disable arcane key functionality after no letter has been pressed for x amount of time
-bool dot_trigger = false; //. pressed previously?
-bool comma_trigger = false; //comma pressed previously?
-bool shift_trigger = false; //was key shifted?
-uint16_t arcane_timer = 0;     // timer 
-uint16_t last_key_manual = 0; // for timer reset
-
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
   ST_MACRO_0,
   ST_MACRO_1,
   ST_MACRO_2,
   ST_MACRO_3,
-  ARCANE_L
 };
 
 
@@ -34,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_X,           KC_L,           KC_O,           KC_U,           KC_Y,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_B,                                           KC_J,           KC_N,           KC_A,           KC_E,           KC_I,           KC_CAPS,        
     LCTL(KC_Z),     KC_Q,           KC_G,           KC_D,           KC_F,           KC_V,                                           KC_Z,           KC_COMMA,       KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
-                                                    KC_SPACE,       OSL(1),                                         LCTL(KC_BSPC),  ARCANE_L
+                                                    KC_SPACE,       OSL(1),                                         LCTL(KC_BSPC),  OSM(MOD_RSFT)
   ),
   [1] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -91,272 +83,12 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo9, KC_RABK),
 };
 
-// Everything below is taken from wYvern1349's oryx with custom qmk repo
-// this implementation is capaple of having OSM shift, caps word, repeat, and magic all on the same key.
-// however, i've opted to not use repeat in favor of only using it as my magic/OSM Shift key.
-// it would get more complicated if I chose to expand beyond this scope, so i'm choosing to keep it short and clean for the sake of my own sanity. but know that it's capable of really cool stuff that I'm not using!
 
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A ... KC_Z:
-        case ARCANE_L:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
-            return true;
 
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_MINS:
-        case KC_DEL:
-        case KC_UNDS:
-        case KC_COMMA:
-            return true;
 
-        default:
-            return false;  // Deactivate Caps Word.
-    }
-}
-
-bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
-                            uint8_t* remembered_mods) {
-    switch (keycode) {
-        case ARCANE_L:
-            return false;  // Ignore ALTREP keys. If this is not here, only default action will be done, since the process stuff is apparently run after the remember last key stuff, so that the key is only ever trying to repeat itself.
-    }
-
-    return true;  // Other keys can be repeated.
-}
-
-static void process_arcane_l(uint16_t keycode, uint8_t mods) {
-    switch (keycode) {
-    //sfbs
-        case KC_N:
-          if (is_caps_word_on()) {
-              send_string("L");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("l");
-          } else {
-              send_string("l");
-          }
-         break;
-        case KC_S:
-          if (is_caps_word_on()) {
-              send_string("C");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("c");
-          } else {
-              send_string("c");
-          }
-         break;
-        case KC_W:
-          if (is_caps_word_on()) {
-              send_string("R");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("r");
-          } else {
-              send_string("r");
-          }
-         break;
-      //2u scissors
-        case KC_QUOTE:
-          if (is_caps_word_on()) {
-              send_string("L");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("l");
-          } else {
-              send_string("l");
-          }
-         break;
-      //1u scissors
-        case KC_A:
-          if (is_caps_word_on()) {
-              send_string("L");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("l");
-          } else {
-              send_string("l");
-          }
-         break;
-        case KC_E:
-          if (is_caps_word_on()) {
-              send_string("Y");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("y");
-          } else { 
-              send_string("y");
-          }
-         break;
-        case KC_G:
-          if (is_caps_word_on()) { //checks for caps word status
-              send_string("H");
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("h");
-          } else { //unshifted previous key
-              send_string("h");
-          }
-         break;
-        case KC_L:
-          if (is_caps_word_on()) { //checks for caps word status
-              send_string("A");
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("a");
-          } else { //unshifted previous key
-              send_string("a");
-          }
-         break;
-        case KC_Y:
-          if (is_caps_word_on()) { //checks for caps word status
-              send_string("E");
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("e");
-          } else { //unshifted previous key
-              send_string("e");
-          }
-         break;
-      //lateral stretch
-        case KC_C:
-          if (is_caps_word_on()) {
-              send_string("K");
-          } else if (mods & MOD_MASK_SHIFT) { 
-              send_string("k");
-          } else { 
-              send_string("k");
-          }
-         break;
-        case KC_M:
-          if (is_caps_word_on()) {
-              send_string("B");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("b");
-          } else {
-              send_string("b");
-          }
-         break;
-      //redirects
-        case KC_O:
-          if (is_caps_word_on()) {
-              send_string("U");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("u");
-          } else { 
-              send_string("u");
-          }
-         break;
-        case KC_T:
-          if (is_caps_word_on()) {
-              send_string("R");
-          } else if (mods & MOD_MASK_SHIFT) {
-              send_string("r");
-          } else {
-              send_string("r");
-          }
-         break;
-      case KC_COMMA: //I'm using this as a "get one-shot shift to trigger within a word" key for abbreviations and the like... could wait for the timer to run out, but I lack the patience.
-            if (is_caps_word_on()) { //checks for caps word status
-              SEND_STRING(SS_TAP(X_BSPC)); //erases comma since I don't actually want it, just using it as a trigger for the two lines following
-              alpha_pressed = false; //basically ends the timer for the arcane functionality prematurely
-              set_oneshot_mods(MOD_BIT(KC_LSFT)); //activates one-shot shift
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              SEND_STRING(SS_TAP(X_BSPC));
-              alpha_pressed = false;
-              set_oneshot_mods(MOD_BIT(KC_LSFT));
-          } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_BSPC));
-              alpha_pressed = false;
-              set_oneshot_mods(MOD_BIT(KC_LSFT));
-          }
-        break;
-      default: set_oneshot_mods(MOD_BIT(KC_LSFT));
-    }
-}
-
-void matrix_scan_user(void) { // The very important timer.
-  if (alpha_pressed && timer_elapsed(arcane_timer) > 1000) { //triggers when timer elapsed
-      alpha_pressed = false;
-      dot_trigger = false;
-      comma_trigger = false;
-      shift_trigger = false;
-      set_last_keycode(KC_SPACE);
-  } else { //timer update
-    switch (get_last_keycode()) {
-      case KC_A ... KC_Z:
-      case KC_SCLN:
-      case KC_COMMA:
-      case KC_DOT:
-        if (last_key_manual != get_last_keycode()) {
-          last_key_manual = get_last_keycode();
-          alpha_pressed = true;
-          arcane_timer = timer_read();
-        }
-      break; //these were all the keys that keep the timer going
-      case KC_SPACE:
-      case KC_ENTER:
-      case KC_BSPC:
-      case RCTL(KC_BSPC):
-      last_key_manual = get_last_keycode();
-      alpha_pressed = false;
-      dot_trigger = false;
-      comma_trigger = false;
-      shift_trigger = false;
-      break; //these were all the keys that end the timer prematurely
-    }
-  }
-}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case KC_COMMA:
-      if (record->event.pressed && layer_state_is(0)) {
-            if (dot_trigger) {
-               if (is_caps_word_on()) { //checks for caps word status
-              SEND_STRING(SS_TAP(X_BSPC) SS_RSFT(SS_TAP(X_QUOTE)) SS_RSFT(SS_TAP(X_O)));
-            } else if (shift_trigger) { 
-              SEND_STRING(SS_TAP(X_BSPC) SS_RSFT(SS_TAP(X_QUOTE)) SS_RSFT(SS_TAP(X_O)));
-            } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_BSPC) SS_RSFT(SS_TAP(X_QUOTE)) SS_TAP(X_O));
-            }
-            dot_trigger = false;
-            shift_trigger = false;
-            set_last_keycode(KC_D);
-            return false;
-            } else {
-        dot_trigger = false;
-        comma_trigger = true;
-        shift_trigger = false;
-        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
-          shift_trigger = true;
-        }
-      }
-      }
-    break;
-    case KC_DOT:
-    if (record->event.pressed && layer_state_is(0)) {
-        dot_trigger = true;
-        comma_trigger = false;
-        shift_trigger = false;
-        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
-          shift_trigger = true;
-        }
-      }
-    break;
-    case ARCANE_L: 
-               if (record->event.pressed && layer_state_is(0)) {
-                 if (get_oneshot_mods() & MOD_MASK_SHIFT) {
-                    caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
-               } else {
-                   if (alpha_pressed) {// letter was pressed within timer limits
-                     arcane_timer = timer_read(); // reset timer
-                     process_arcane_l(get_last_keycode(), get_last_mods()); // call arcane code
-                     dot_trigger = false;
-                     comma_trigger = false;
-                     shift_trigger = false;
-                   } else {//alpha timer timed out, so key functions just as a OSM shift
-                      set_oneshot_mods(MOD_BIT(KC_LSFT));
-                   }
-                 }
-               }
-       break; 
     case ST_MACRO_0:
     if (record->event.pressed) {
       SEND_STRING(SS_LALT(SS_TAP(X_KP_2) SS_TAP(X_KP_0) ));
@@ -446,4 +178,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
-
