@@ -91,10 +91,10 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo9, KC_RABK),
 };
 
-// Everything below is taken from wYvern1349's oryx with custom qmk repo
-// this implementation is capaple of having OSM shift, caps word, repeat, and magic all on the same key.
-// however, i've opted to not use repeat in favor of only using it as my magic/OSM Shift key.
-// it would get more complicated if I chose to expand beyond this scope, so i'm choosing to keep it short and clean for the sake of my own sanity. but know that it's capable of really cool stuff that I'm not using!
+// everything below is taken from wYvern1349's oryx with custom qmk repo
+// this implementation is capable of having OSM shift, caps word, repeat, and magic all on the same key.
+// however, i've opted to not use repeat in favor of only using it as my magic/OSM shift key.
+// it would get more complicated if i chose to expand beyond this scope, so i'm choosing to keep it short and sweet for the sake of my own sanity. but know that it's capable of really cool stuff that I'm not using!
 
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
@@ -132,11 +132,11 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
     //sfbs
         case KC_N:
-          if (is_caps_word_on()) {
+          if (is_caps_word_on()) { //checks for caps word status
               send_string("L");
-          } else if (mods & MOD_MASK_SHIFT) {
+          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
               send_string("l");
-          } else {
+          } else { //unshifted previous key
               send_string("l");
           }
          break;
@@ -188,29 +188,29 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
           }
          break;
         case KC_G:
-          if (is_caps_word_on()) { //checks for caps word status
+          if (is_caps_word_on()) {
               send_string("H");
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+          } else if (mods & MOD_MASK_SHIFT) {
               send_string("h");
-          } else { //unshifted previous key
+          } else {
               send_string("h");
           }
          break;
         case KC_L:
-          if (is_caps_word_on()) { //checks for caps word status
+          if (is_caps_word_on()) {
               send_string("A");
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+          } else if (mods & MOD_MASK_SHIFT) {
               send_string("a");
-          } else { //unshifted previous key
+          } else {
               send_string("a");
           }
          break;
         case KC_Y:
-          if (is_caps_word_on()) { //checks for caps word status
+          if (is_caps_word_on()) {
               send_string("E");
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+          } else if (mods & MOD_MASK_SHIFT) {
               send_string("e");
-          } else { //unshifted previous key
+          } else {
               send_string("e");
           }
          break;
