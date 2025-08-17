@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_X,           KC_L,           KC_O,           KC_U,           KC_Y,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_B,                                           KC_J,           KC_N,           KC_A,           KC_E,           KC_I,           KC_CAPS,        
-    LCTL(KC_Z),     KC_Q,           KC_G,           KC_D,           KC_F,           KC_V,                                           KC_Z,           KC_COMMA,       KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
+    LCTL(KC_Z),     KC_Q,           KC_G,           KC_F,           KC_D,           KC_V,                                           KC_Z,           KC_COMMA,       KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ENTER,       
                                                     KC_SPACE,       OSL(1),                                         LCTL(KC_BSPC),  ARCANE_L
   ),
   [1] = LAYOUT_voyager(
@@ -131,12 +131,21 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
 static void process_arcane_l(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
     //sfbs
-        case KC_N:
+        case KC_F:
           if (is_caps_word_on()) { //checks for caps word status
-              send_string("L");
+              send_string("T");
           } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              send_string("l");
+              send_string("t");
           } else { //unshifted previous key
+              send_string("t");
+          }
+         break;
+        case KC_N:
+          if (is_caps_word_on()) {
+              send_string("L");
+          } else if (mods & MOD_MASK_SHIFT) {
+              send_string("l");
+          } else { 
               send_string("l");
           }
          break;
