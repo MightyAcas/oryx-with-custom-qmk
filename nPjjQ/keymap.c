@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_Z,           KC_L,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_X,           KC_N,           KC_A,           KC_E,           KC_I,           KC_ENTER,       
     LCTL(KC_Z),     KC_Q,           KC_V,           KC_G,           KC_D,           KC_B,                                           KC_COMMA,       MAGIC_KEY,      KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ESCAPE,      
-                                                    KC_SPACE,       OSL(1),                                         OSM(MOD_RSFT),  Y_OSM
+                                                    KC_SPACE,       OSL(1),                                         REP_OSM,  KC_Y
   ),
   [1] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -104,7 +104,7 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
                             uint8_t* remembered_mods) {
     switch (keycode) {
         case MAGIC_KEY:
-        case Y_OSM:
+        case REP_OSM:
             return false;  // Ignore ALTREP keys. If this is not here, only default action will be done, since the process stuff is apparently run after the remember last key stuff, so that the key is only ever trying to repeat itself.
     }
 
@@ -251,14 +251,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break;
-    case Y_OSM: 
+    case REP_OSM: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
         } else {
           if (alpha_pressed) {// letter was pressed within timer limits
             arcane_timer = timer_read(); // reset timer
-            SEND_STRING(SS_TAP(X_REP));
+            tap_code16(KC_REPEAT);
           } else {//alpha timer timed out, so key functions just as a OSM shift
             set_oneshot_mods(MOD_BIT(KC_LSFT));
           }
