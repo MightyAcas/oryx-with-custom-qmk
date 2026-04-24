@@ -13,7 +13,7 @@ uint16_t last_mod_manual = 0; // for timer reset and adaptive keys
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
   MAGIC_KEY,
-  Y_OSM,
+  REP_OSM,
 };
 
 
