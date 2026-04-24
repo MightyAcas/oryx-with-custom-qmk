@@ -13,6 +13,7 @@ uint16_t last_mod_manual = 0; // for timer reset and adaptive keys
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
   MAGIC_KEY,
+  Y_OSM,
 };
 
 
@@ -24,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_Z,           KC_L,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_X,           KC_N,           KC_A,           KC_E,           KC_I,           KC_ENTER,       
     LCTL(KC_Z),     KC_Q,           KC_V,           KC_G,           KC_D,           KC_B,                                           KC_COMMA,       MAGIC_KEY,      KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ESCAPE,      
-                                                    KC_SPACE,       OSL(1),                                         OSM(MOD_RSFT),  KC_Y
+                                                    KC_SPACE,       OSL(1),                                         OSM(MOD_RSFT),  Y_OSM
   ),
   [1] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -103,6 +104,7 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
                             uint8_t* remembered_mods) {
     switch (keycode) {
         case MAGIC_KEY:
+        case Y_OSM:
             return false;  // Ignore ALTREP keys. If this is not here, only default action will be done, since the process stuff is apparently run after the remember last key stuff, so that the key is only ever trying to repeat itself.
     }
 
@@ -129,6 +131,27 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
               SEND_STRING(SS_TAP(X_L));
           }
          break;        
+        case KC_COMMA: //I'm using this as a "get one-shot shift to trigger within a word" key for abbreviations and the like... could wait for the timer to run out, but I lack the patience.
+            if (is_caps_word_on()) { //checks for caps word status
+              SEND_STRING(SS_TAP(X_BSPC)); //erases comma since I don't actually want it, just using it as a trigger for the two lines following
+              alpha_pressed = false; //basically ends the timer for the arcane functionality prematurely
+              set_oneshot_mods(MOD_BIT(KC_LSFT)); //activates one-shot shift
+          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_BSPC));
+              alpha_pressed = false;
+              set_oneshot_mods(MOD_BIT(KC_LSFT));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_BSPC));
+              alpha_pressed = false;
+              set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        break;
+      default: set_oneshot_mods(MOD_BIT(KC_LSFT));
+    }
+}
+
+static void process_y_osm(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {   
         case KC_COMMA: //I'm using this as a "get one-shot shift to trigger within a word" key for abbreviations and the like... could wait for the timer to run out, but I lack the patience.
             if (is_caps_word_on()) { //checks for caps word status
               SEND_STRING(SS_TAP(X_BSPC)); //erases comma since I don't actually want it, just using it as a trigger for the two lines following
@@ -194,7 +217,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break; 
-
+  switch (keycode) {
+    case Y_OSM: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_y_osm(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break; 
+    
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
