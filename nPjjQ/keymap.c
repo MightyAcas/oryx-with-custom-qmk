@@ -258,7 +258,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
           if (alpha_pressed) {// letter was pressed within timer limits
             arcane_timer = timer_read(); // reset timer
-            tap_code16(KC_REPEAT);
+            tap_code16(QK_REP);
           } else {//alpha timer timed out, so key functions just as a OSM shift
             set_oneshot_mods(MOD_BIT(KC_LSFT));
           }
