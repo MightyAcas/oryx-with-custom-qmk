@@ -5,6 +5,11 @@
 #define ZSA_SAFE_RANGE SAFE_RANGE
 #endif
 
+bool alpha_pressed = false; // variable for timer to disable arcane key functionality after no letter has been pressed for x amount of time
+uint16_t arcane_timer = 0;     // timer 
+uint16_t last_key_manual = 0; // for timer reset and adaptive keys
+uint16_t last_mod_manual = 0; // for timer reset and adaptive keys
+
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
   MAGIC_KEY,
