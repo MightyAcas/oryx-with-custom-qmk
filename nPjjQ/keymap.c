@@ -112,29 +112,21 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
 static void process_arcane_l(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_A:
-          if (is_caps_word_on()) { //checks for caps word status
-              SEND_STRING(SS_RSFT(SS_TAP(X_V)));
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
               SEND_STRING(SS_RSFT(SS_TAP(X_V)));
           } else { //unshifted previous key
               SEND_STRING(SS_TAP(X_V));
           }
           break;        
         case KC_QUOTE:
-          if (is_caps_word_on()) { //checks for caps word status
-              SEND_STRING(SS_LSFT(SS_TAP(X_L)));
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
               SEND_STRING(SS_TAP(X_L));
           } else { //unshifted previous key
               SEND_STRING(SS_TAP(X_L));
           }
          break;        
         case KC_COMMA: //I'm using this as a "get one-shot shift to trigger within a word" key for abbreviations and the like... could wait for the timer to run out, but I lack the patience.
-            if (is_caps_word_on()) { //checks for caps word status
-              SEND_STRING(SS_TAP(X_BSPC)); //erases comma since I don't actually want it, just using it as a trigger for the two lines following
-              alpha_pressed = false; //basically ends the timer for the arcane functionality prematurely
-              set_oneshot_mods(MOD_BIT(KC_LSFT)); //activates one-shot shift
-          } else if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+            if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
               SEND_STRING(SS_TAP(X_BSPC));
               alpha_pressed = false;
               set_oneshot_mods(MOD_BIT(KC_LSFT));
