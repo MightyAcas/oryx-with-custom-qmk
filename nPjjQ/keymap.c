@@ -97,28 +97,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo20, KC_PSCR),
 };
 
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A ... KC_Z:
-        case MAGIC_KEY:
-        case Y_OSM:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
-            return true;
 
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_MINS:
-        case KC_DEL:
-        case KC_UNDS:
-        case KC_COMMA:
-            return true;
-
-        default:
-            return false;  // Deactivate Caps Word.
-    }
-}
 
 
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
@@ -132,7 +111,7 @@ bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
     return true;  // Other keys can be repeated.
 }
 
-static void process_magic_key(uint16_t keycode, uint8_t mods) {
+static void process_arcane_l(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_A:
           if (is_caps_word_on()) { //checks for caps word status
@@ -231,7 +210,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
           if (alpha_pressed) {// letter was pressed within timer limits
             arcane_timer = timer_read(); // reset timer
-            process_magic_key(get_last_keycode(), get_last_mods()); // call arcane code
+            process_arcane_l(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
             set_oneshot_mods(MOD_BIT(KC_LSFT));
           }
