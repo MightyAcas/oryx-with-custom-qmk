@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F2,          KC_PSCR,        KC_HOME,        KC_UP,          KC_END,         KC_PAGE_UP,                                     KC_BSLS,        KC_7,           KC_8,           KC_9,           LED_LEVEL,      KC_F5,          
     KC_TRANSPARENT, QK_LLCK,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDN,                                        KC_GRAVE,       KC_4,           KC_5,           KC_6,           KC_EQUAL,       KC_F8,          
     KC_F4,          KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_UP,       KC_MS_RIGHT,    KC_MS_BTN2,                                     KC_SLASH,       KC_1,           KC_2,           KC_3,           KC_TRANSPARENT, KC_F11,         
-                                                    KC_MS_BTN1,     TO(0),                                          KC_TRANSPARENT, KC_0
+                                                    KC_MS_BTN1,     TO(0),                                          REP_OSM, KC_0
   ),
   [2] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -65,9 +65,9 @@ const uint16_t PROGMEM combo10[] = { KC_R, KC_Q, COMBO_END};
 const uint16_t PROGMEM combo11[] = { KC_S, KC_V, COMBO_END};
 const uint16_t PROGMEM combo12[] = { KC_T, KC_G, COMBO_END};
 const uint16_t PROGMEM combo13[] = { KC_H, KC_D, COMBO_END};
-const uint16_t PROGMEM combo14[] = { KC_N, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM combo15[] = { KC_A, KC_QUOTE, COMBO_END};
-const uint16_t PROGMEM combo16[] = { KC_E, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM combo14[] = { KC_N, MAGIC_KEY, COMBO_END};
+const uint16_t PROGMEM combo15[] = { KC_A, KC_COMMA, COMBO_END};
+const uint16_t PROGMEM combo16[] = { KC_E, KC_QUOTE, COMBO_END};
 const uint16_t PROGMEM combo17[] = { KC_I, KC_DOT, COMBO_END};
 const uint16_t PROGMEM combo18[] = { MAGIC_KEY, KC_COMMA, KC_QUOTE, COMBO_END};
 const uint16_t PROGMEM combo19[] = { KC_L, KC_O, KC_U, COMBO_END};
