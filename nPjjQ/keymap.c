@@ -116,7 +116,7 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
     switch (keycode) {
         case KC_QUOTE:
           if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              SEND_STRING(SS_TAP(X_L));
+              SEND_STRING(SS_RSFT(SS_TAP(X_L)));
           } else { //unshifted previous key
               SEND_STRING(SS_TAP(X_L));
           }
@@ -172,9 +172,9 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
           break;         
           case KC_A:
           if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              SEND_STRING(SS_RSFT(SS_TAP(X_X)));
+              SEND_STRING(SS_RSFT(SS_TAP(X_L)));
           } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_X));
+              SEND_STRING(SS_TAP(X_L));
           }
           break;         
           case KC_E:
@@ -202,7 +202,7 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
               set_oneshot_mods(MOD_BIT(KC_LSFT));
           }
         break;
-      default: set_oneshot_mods(MOD_BIT(KC_LSFT));
+      default: SEND_STRING(SS_TAP(X_SLASH));
     }
 }
 
