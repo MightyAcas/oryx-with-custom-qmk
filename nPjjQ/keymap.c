@@ -22,10 +22,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [1] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_F2,          KC_ESCAPE,      KC_HOME,        KC_UP,          KC_END,         KC_PAGE_UP,                                     KC_ASTR,        KC_7,           KC_8,           KC_9,           KC_BSLS,        KC_F5,          
-    LCTL(KC_BSPC),  LED_LEVEL,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDN,                                        KC_GRAVE,       KC_4,           KC_5,           KC_6,           KC_PLUS,        KC_F8,          
-    KC_F4,          KC_LEFT_GUI,    KC_LEFT_ALT,    KC_LEFT_CTRL,   KC_LEFT_SHIFT,  QK_LLCK,                                        KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_TRANSPARENT, KC_F11,         
-                                                    KC_TRANSPARENT, TO(0),                                          KC_TRANSPARENT, KC_0
+    KC_F2,          KC_PSCR,        KC_HOME,        KC_UP,          KC_END,         KC_PAGE_UP,                                     KC_BSLS,        KC_7,           KC_8,           KC_9,           LED_LEVEL,      KC_F5,          
+    KC_TRANSPARENT, QK_LLCK,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDN,                                        KC_GRAVE,       KC_4,           KC_5,           KC_6,           KC_EQUAL,       KC_F8,          
+    KC_F4,          KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_UP,       KC_MS_RIGHT,    KC_MS_BTN2,                                     KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_TRANSPARENT, KC_F11,         
+                                                    KC_MS_BTN1,     TO(0),                                          KC_TRANSPARENT, KC_0
   ),
   [2] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -64,7 +64,7 @@ const uint16_t PROGMEM combo16[] = { KC_E, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM combo17[] = { KC_I, KC_DOT, COMBO_END};
 const uint16_t PROGMEM combo18[] = { KC_COMMA, KC_QUOTE, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM combo19[] = { KC_L, KC_O, KC_U, COMBO_END};
-const uint16_t PROGMEM combo20[] = { KC_COMMA, KC_QUOTE, KC_SCLN, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combo20[] = { KC_SPACE, KC_BSPC, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, TO(0)),
@@ -87,7 +87,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo17, KC_RIGHT_GUI),
     COMBO(combo18, TO(2)),
     COMBO(combo19, KC_CAPS),
-    COMBO(combo20, KC_PSCR),
+    COMBO(combo20, LCTL(KC_BSPC)),
 };
 
 
@@ -98,6 +98,22 @@ combo_t key_combos[COMBO_COUNT] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+  case QK_MODS ... QK_MODS_MAX:
+    // Mouse and consumer keys (volume, media) with modifiers work inconsistently across operating systems,
+    // this makes sure that modifiers are always applied to the key that was pressed.
+    if (IS_MOUSE_KEYCODE(QK_MODS_GET_BASIC_KEYCODE(keycode))) {
+      if (record->event.pressed) {
+        add_mods(QK_MODS_GET_MODS(keycode));
+        send_keyboard_report();
+        wait_ms(2);
+        register_code(QK_MODS_GET_BASIC_KEYCODE(keycode));
+        return false;
+      } else {
+        wait_ms(2);
+        del_mods(QK_MODS_GET_MODS(keycode));
+      }
+    }
+    break;
 
     case RGB_SLD:
       if (record->event.pressed) {
