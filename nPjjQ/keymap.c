@@ -22,9 +22,9 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_Z,           KC_L,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
-    KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_X,           KC_N,           KC_A,           KC_E,           KC_I,           KC_ENTER,       
-    LCTL(KC_Z),     KC_Q,           KC_V,           KC_G,           KC_D,           KC_B,                                           MAGIC_KEY,      KC_COMMA,       KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ESCAPE,      
+    KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_X,           KC_L,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
+    KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_COMMA,       KC_N,           KC_A,           KC_E,           KC_I,           KC_ENTER,       
+    LCTL(KC_Z),     KC_Q,           KC_V,           KC_G,           KC_D,           KC_B,                                           KC_Z,           MAGIC_KEY,      KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ESCAPE,      
                                                     KC_SPACE,       OSL(1),                                         REP_OSM,  KC_Y
   ),
   [1] = LAYOUT_voyager(
@@ -69,7 +69,7 @@ const uint16_t PROGMEM combo14[] = { KC_N, KC_COMMA, COMBO_END};
 const uint16_t PROGMEM combo15[] = { KC_A, KC_QUOTE, COMBO_END};
 const uint16_t PROGMEM combo16[] = { KC_E, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM combo17[] = { KC_I, KC_DOT, COMBO_END};
-const uint16_t PROGMEM combo18[] = { KC_COMMA, KC_QUOTE, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM combo18[] = { MAGIC_KEY, KC_QUOTE, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM combo19[] = { KC_L, KC_O, KC_U, COMBO_END};
 const uint16_t PROGMEM combo20[] = { KC_SPACE, KC_BSPC, COMBO_END};
 
