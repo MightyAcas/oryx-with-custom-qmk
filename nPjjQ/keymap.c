@@ -71,6 +71,8 @@ const uint16_t PROGMEM combo17[] = { KC_I, KC_DOT, COMBO_END};
 const uint16_t PROGMEM combo18[] = { MAGIC_KEY, KC_COMMA, KC_QUOTE, COMBO_END};
 const uint16_t PROGMEM combo19[] = { KC_L, KC_O, KC_U, COMBO_END};
 const uint16_t PROGMEM combo20[] = { KC_SPACE, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM combo21[] = { MAGIC_KEY, KC_COMMA, COMBO_END};
+const uint16_t PROGMEM combo22[] = { KC_COMMA, KC_QUOTE, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, TO(0)),
@@ -94,6 +96,8 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo18, TO(2)),
     COMBO(combo19, KC_CAPS),
     COMBO(combo20, LCTL(KC_BSPC)),
+    COMBO(combo21, KC_QUES),
+    COMBO(combo22, KC_EXLM),
 };
 
 
@@ -168,27 +172,13 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
               SEND_STRING(SS_TAP(X_T));
           }
           break;         
-          case KC_A:
+          case KC_T:
           if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              SEND_STRING(SS_RSFT(SS_TAP(X_L)));
+              SEND_STRING(SS_RSFT(SS_TAP(X_R)));
           } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_L));
+              SEND_STRING(SS_TAP(X_R));
           }
           break;         
-          case KC_E:
-          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              SEND_STRING(SS_RSFT(SS_TAP(X_X)));
-          } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_X));
-          }
-          break;            
-          case KC_I:
-          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              SEND_STRING(SS_RSFT(SS_TAP(X_X)));
-          } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_X));
-          }
-          break;            
         case KC_COMMA: //I'm using this as a "get one-shot shift to trigger within a word" key for abbreviations and the like... could wait for the timer to run out, but I lack the patience.
             if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
               SEND_STRING(SS_TAP(X_BSPC));
