@@ -12,7 +12,7 @@ uint16_t last_mod_manual = 0; // for timer reset and adaptive keys
 
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
-  REP_OSM,
+  MAGIC_KEY,
 };
 
 
@@ -24,7 +24,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,         KC_Q,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_J,           KC_Y,           KC_O,           KC_U,           KC_B,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_X,           KC_N,           KC_A,           KC_E,           KC_I,           KC_ENTER,       
     LCTL(KC_Z),     KC_L,           KC_G,           KC_V,           KC_D,           KC_W,                                           KC_Z,           KC_COMMA,       KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ESCAPE,      
-                                                    KC_SPACE,       OSL(1),                                         RCTL(KC_BSPC),  REP_OSM
+                                                    KC_SPACE,       OSL(1),                                         RCTL(KC_BSPC),  MAGIC_KEY
   ),
   [1] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -104,11 +104,211 @@ combo_t key_combos[COMBO_COUNT] = {
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
                             uint8_t* remembered_mods) {
     switch (keycode) {
-        case REP_OSM:
+        case MAGIC_KEY:
             return false;  // Ignore ALTREP keys. If this is not here, only default action will be done, since the process stuff is apparently run after the remember last key stuff, so that the key is only ever trying to repeat itself.
     }
 
     return true;  // Other keys can be repeated.
+}
+
+static void process_arcane_l(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_A:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_A));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_A));
+          }
+          break;      
+          case KC_B:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_E));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_E));
+          }
+          break;         
+          case KC_C:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_C));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_C));
+          }
+          break;      
+          case KC_D:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_D));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_D));
+          }
+          break;      
+          case KC_E:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_E));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_E));
+          }
+          break;      
+          case KC_F:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_F));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_F));
+          }
+          break;      
+          case KC_G:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_G));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_G));
+          }
+          break;      
+          case KC_H:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_H));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_H));
+          }
+          break;      
+          case KC_I:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_I));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_I));
+          }
+          break;      
+          case KC_J:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_J));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_J));
+          }
+          break;      
+          case KC_K:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_K));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_K));
+          }
+          break;      
+          case KC_L:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_L));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_L));
+          }
+          break;      
+          case KC_M:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_M));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_M));
+          }
+          break;      
+          case KC_N:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_Y));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_Y));
+          }
+          break;         
+          case KC_O:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_O));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_O));
+          }
+          break;      
+          case KC_P:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_P));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_P));
+          }
+          break;      
+          case KC_Q:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_Q));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_Q));
+          }
+          break;      
+          case KC_R:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_R));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_R));
+          }
+          break;      
+          case KC_S:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_S));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_S));
+          }
+          break;      
+          case KC_T:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_T));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_T));
+          }
+          break;      
+          case KC_U:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_QUOTE));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_QUOTE));
+          }
+          break;         
+          case KC_V:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_V));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_V));
+          }
+          break;      
+          case KC_W:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_H));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_H));
+          }
+          break;      
+          case KC_X:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_X));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_X));
+          }
+          break;      
+          case KC_Y:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_COMMA));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_COMMA));
+          }
+          break;        
+          case KC_Z:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_Z));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_Z));
+          }
+          break;      
+
+        case KC_COMMA: //I'm using this as a "get one-shot shift to trigger within a word" key for abbreviations and the like... could wait for the timer to run out, but I lack the patience.
+            if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_BSPC));
+              alpha_pressed = false;
+              set_oneshot_mods(MOD_BIT(KC_LSFT));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_BSPC));
+              alpha_pressed = false;
+              set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        break;
+      default: set_oneshot_mods(MOD_BIT(KC_LSFT));
+    }
 }
 
 void matrix_scan_user(void) { // The very important timer.
@@ -143,14 +343,14 @@ void matrix_scan_user(void) { // The very important timer.
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case REP_OSM: 
+    case MAGIC_KEY: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
         } else {
           if (alpha_pressed) {// letter was pressed within timer limits
             arcane_timer = timer_read(); // reset timer
-            repeat_key_invoke(&record->event);
+            process_arcane_l(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
             set_oneshot_mods(MOD_BIT(KC_LSFT));
           }
