@@ -21,8 +21,8 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TAB,         KC_Q,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_J,           KC_Y,           KC_O,           KC_U,           KC_B,           KC_MINUS,       
-    KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_X,           KC_N,           KC_A,           KC_E,           KC_I,           KC_ENTER,       
+    KC_TAB,         KC_Q,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_X,           KC_Y,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
+    KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_B,           KC_N,           KC_A,           KC_E,           KC_I,           KC_ENTER,       
     LCTL(KC_Z),     KC_L,           KC_G,           KC_V,           KC_D,           KC_W,                                           KC_Z,           KC_COMMA,       KC_QUOTE,       KC_SCLN,        KC_DOT,         KC_ESCAPE,      
                                                     KC_SPACE,       OSL(1),                                         RCTL(KC_BSPC),  MAGIC_KEY
   ),
@@ -122,9 +122,9 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
           break;      
           case KC_B:
           if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              SEND_STRING(SS_TAP(X_E));
+              SEND_STRING(SS_TAP(X_Y));
           } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_E));
+              SEND_STRING(SS_TAP(X_Y));
           }
           break;         
           case KC_C:
@@ -255,9 +255,9 @@ static void process_arcane_l(uint16_t keycode, uint8_t mods) {
           break;      
           case KC_U:
           if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
-              SEND_STRING(SS_TAP(X_QUOTE));
+              SEND_STRING(SS_TAP(X_E));
           } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_QUOTE));
+              SEND_STRING(SS_TAP(X_E));
           }
           break;         
           case KC_V:
