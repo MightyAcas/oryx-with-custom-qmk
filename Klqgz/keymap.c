@@ -394,7 +394,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_h(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_H));
           }
         }
       }
@@ -409,7 +409,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_c(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_C));
           }
         }
       }
@@ -424,7 +424,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_y(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_Y));
           }
         }
       }
@@ -439,7 +439,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_q(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_Q));
           }
         }
       }
@@ -454,7 +454,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_l(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_L));
           }
         }
       }
@@ -469,7 +469,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_b(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_B));
           }
         }
       }
@@ -484,7 +484,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_r(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_R));
           }
         }
       }
@@ -499,7 +499,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_s(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_S));
           }
         }
       }
@@ -514,7 +514,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_v(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_V));
           }
         }
       }
@@ -529,7 +529,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_d(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_D));
           }
         }
       }
@@ -544,7 +544,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_e(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_E));
           }
         }
       }
@@ -559,7 +559,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_o(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_O));
           }
         }
       }
@@ -574,7 +574,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             arcane_timer = timer_read(); // reset timer
             process_adaptive_g(get_last_keycode(), get_last_mods()); // call arcane code
           } else {//alpha timer timed out, so key functions just as a OSM shift
-            set_oneshot_mods(MOD_BIT(KC_LSFT));
+            SEND_STRING(SS_TAP(X_G));
           }
         }
       }
