@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TAB,         AD_B,           AD_C,           KC_M,           KC_P,           KC_K,                                           KC_X,           AD_L,           AD_O,           KC_U,           KC_J,           KC_MINUS,       
-    KC_BSPC,        KC_N,           AD_S,           KC_T,           AD_H,           KC_W,                                           KC_QUOTE,       AB_R,           KC_A,           AD_E,           KC_I,           KC_ENTER,       
+    KC_BSPC,        KC_N,           AD_S,           KC_T,           AD_H,           KC_W,                                           KC_QUOTE,       AD_R,           KC_A,           AD_E,           KC_I,           KC_ENTER,       
     LCTL(KC_Z),     AD_Q,           AD_G,           AD_V,           AD_D,           KC_F,                                           KC_Z,           AD_Y,           KC_DOT,         KC_SCLN,        KC_COMMA,       KC_ESCAPE,      
                                                     KC_SPACE,       OSL(1),                                         RCTL(KC_BSPC),  OSM(MOD_RSFT)
   ),
@@ -62,55 +62,6 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
-const uint16_t PROGMEM combo0[] = { KC_DELETE, KC_SPACE, COMBO_END};
-const uint16_t PROGMEM combo1[] = { KC_TAB, KC_Q, COMBO_END};
-const uint16_t PROGMEM combo2[] = { KC_P, KC_H, COMBO_END};
-const uint16_t PROGMEM combo3[] = { KC_L, KC_R, COMBO_END};
-const uint16_t PROGMEM combo4[] = { KC_M, KC_T, COMBO_END};
-const uint16_t PROGMEM combo5[] = { KC_O, KC_A, COMBO_END};
-const uint16_t PROGMEM combo6[] = { KC_S, KC_C, COMBO_END};
-const uint16_t PROGMEM combo7[] = { KC_E, KC_U, COMBO_END};
-const uint16_t PROGMEM combo8[] = { KC_B, KC_N, COMBO_END};
-const uint16_t PROGMEM combo9[] = { KC_J, KC_I, COMBO_END};
-const uint16_t PROGMEM combo10[] = { KC_N, KC_Q, COMBO_END};
-const uint16_t PROGMEM combo11[] = { KC_S, KC_G, COMBO_END};
-const uint16_t PROGMEM combo12[] = { KC_T, KC_V, COMBO_END};
-const uint16_t PROGMEM combo13[] = { KC_H, KC_D, COMBO_END};
-const uint16_t PROGMEM combo14[] = { KC_R, KC_Y, COMBO_END};
-const uint16_t PROGMEM combo15[] = { KC_A, KC_DOT, COMBO_END};
-const uint16_t PROGMEM combo16[] = { KC_E, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM combo17[] = { KC_I, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM combo18[] = { KC_SPACE, OSL(1), COMBO_END};
-const uint16_t PROGMEM combo19[] = { RCTL(KC_BSPC), OSM(MOD_RSFT), COMBO_END};
-const uint16_t PROGMEM combo20[] = { KC_SPACE, KC_BSPC, COMBO_END};
-const uint16_t PROGMEM combo21[] = { KC_Y, KC_DOT, COMBO_END};
-const uint16_t PROGMEM combo22[] = { KC_DOT, KC_SCLN, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo0, TO(0)),
-    COMBO(combo1, KC_ESCAPE),
-    COMBO(combo2, KC_LPRN),
-    COMBO(combo3, KC_RPRN),
-    COMBO(combo4, KC_LBRC),
-    COMBO(combo5, KC_RBRC),
-    COMBO(combo6, KC_LCBR),
-    COMBO(combo7, KC_RCBR),
-    COMBO(combo8, KC_LABK),
-    COMBO(combo9, KC_RABK),
-    COMBO(combo10, KC_LEFT_GUI),
-    COMBO(combo11, KC_LEFT_ALT),
-    COMBO(combo12, KC_LEFT_CTRL),
-    COMBO(combo13, KC_LEFT_SHIFT),
-    COMBO(combo14, KC_RIGHT_SHIFT),
-    COMBO(combo15, KC_RIGHT_CTRL),
-    COMBO(combo16, KC_RIGHT_ALT),
-    COMBO(combo17, KC_RIGHT_GUI),
-    COMBO(combo18, TO(2)),
-    COMBO(combo19, KC_CAPS),
-    COMBO(combo20, LCTL(KC_BSPC)),
-    COMBO(combo21, KC_QUES),
-    COMBO(combo22, KC_EXLM),
-};
 
 
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
