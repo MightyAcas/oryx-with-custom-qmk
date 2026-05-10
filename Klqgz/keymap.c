@@ -199,7 +199,7 @@ static void process_adaptive_b(uint16_t keycode, uint8_t mods) {
           if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
               SEND_STRING(SS_TAP(X_L));
           } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_L);
+              SEND_STRING(SS_TAP(X_L));
           }
           break;      
       default: SEND_STRING(SS_TAP(X_B));
@@ -212,7 +212,7 @@ static void process_adaptive_r(uint16_t keycode, uint8_t mods) {
           if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
               SEND_STRING(SS_TAP(X_H));
           } else { //unshifted previous key
-              SEND_STRING(SS_TAP(X_H);
+              SEND_STRING(SS_TAP(X_H));
           }
           break;      
       default: SEND_STRING(SS_TAP(X_R));
@@ -337,7 +337,7 @@ void matrix_scan_user(void) { // The very important timer.
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case ADP_H: 
+    case AD_H: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -352,7 +352,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_C: 
+    case AD_C: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -367,7 +367,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_Y: 
+    case AD_Y: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -382,7 +382,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_Q: 
+    case AD_Q: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -397,7 +397,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_L: 
+    case AD_L: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -412,7 +412,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_B: 
+    case AD_B: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -427,7 +427,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_R: 
+    case AD_R: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -442,7 +442,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_S: 
+    case AD_S: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -457,7 +457,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_V: 
+    case AD_V: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -472,7 +472,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_D: 
+    case AD_D: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -487,7 +487,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_E: 
+    case AD_E: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -502,7 +502,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_O: 
+    case AD_O: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
@@ -517,7 +517,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
 
-    case ADP_G: 
+    case AD_G: 
       if (record->event.pressed && layer_state_is(0)) {
         if (get_oneshot_mods() & MOD_MASK_SHIFT) {
           caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
