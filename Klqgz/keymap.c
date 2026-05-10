@@ -62,7 +62,55 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
+const uint16_t PROGMEM combo0[] = { KC_M, KC_COMMA, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combo1[] = { KC_TAB, KC_Q, COMBO_END};
+const uint16_t PROGMEM combo2[] = { KC_P, AD_H, COMBO_END};
+const uint16_t PROGMEM combo3[] = { AD_Y, KC_N, COMBO_END};
+const uint16_t PROGMEM combo4[] = { KC_M, KC_T, COMBO_END};
+const uint16_t PROGMEM combo5[] = { AD_O, KC_A, COMBO_END};
+const uint16_t PROGMEM combo6[] = { AD_S, AD_C, COMBO_END};
+const uint16_t PROGMEM combo7[] = { AD_E, KC_U, COMBO_END};
+const uint16_t PROGMEM combo8[] = { AD_Q, AD_R, COMBO_END};
+const uint16_t PROGMEM combo9[] = { AD_B, KC_I, COMBO_END};
+const uint16_t PROGMEM combo10[] = { AD_R, AD_L, COMBO_END};
+const uint16_t PROGMEM combo11[] = { AD_S, AD_G, COMBO_END};
+const uint16_t PROGMEM combo12[] = { KC_T, AD_V, COMBO_END};
+const uint16_t PROGMEM combo13[] = { AD_H, AD_D, COMBO_END};
+const uint16_t PROGMEM combo14[] = { KC_N, KC_COMMA, COMBO_END};
+const uint16_t PROGMEM combo15[] = { KC_A, KC_QUOTE, COMBO_END};
+const uint16_t PROGMEM combo16[] = { AD_E, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM combo17[] = { KC_I, KC_DOT, COMBO_END};
+const uint16_t PROGMEM combo18[] = { KC_COMMA, KC_QUOTE, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM combo19[] = { AD_Y, AD_O, KC_U, COMBO_END};
+const uint16_t PROGMEM combo20[] = { KC_SPACE, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM combo21[] = { KC_COMMA, KC_QUOTE, COMBO_END};
+const uint16_t PROGMEM combo22[] = { KC_QUOTE, KC_SCLN, COMBO_END};
 
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(combo0, TO(0)),
+    COMBO(combo1, KC_ESCAPE),
+    COMBO(combo2, KC_LPRN),
+    COMBO(combo3, KC_RPRN),
+    COMBO(combo4, KC_LBRC),
+    COMBO(combo5, KC_RBRC),
+    COMBO(combo6, KC_LCBR),
+    COMBO(combo7, KC_RCBR),
+    COMBO(combo8, KC_LABK),
+    COMBO(combo9, KC_RABK),
+    COMBO(combo10, KC_LEFT_GUI),
+    COMBO(combo11, KC_LEFT_ALT),
+    COMBO(combo12, KC_LEFT_CTRL),
+    COMBO(combo13, KC_LEFT_SHIFT),
+    COMBO(combo14, KC_RIGHT_SHIFT),
+    COMBO(combo15, KC_RIGHT_CTRL),
+    COMBO(combo16, KC_RIGHT_ALT),
+    COMBO(combo17, KC_RIGHT_GUI),
+    COMBO(combo18, TO(2)),
+    COMBO(combo19, KC_CAPS),
+    COMBO(combo20, LCTL(KC_BSPC)),
+    COMBO(combo21, KC_QUES),
+    COMBO(combo22, KC_EXLM),
+};
 
 bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
                             uint8_t* remembered_mods) {
