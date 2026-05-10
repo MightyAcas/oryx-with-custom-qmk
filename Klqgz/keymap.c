@@ -5,8 +5,26 @@
 #define ZSA_SAFE_RANGE SAFE_RANGE
 #endif
 
+bool alpha_pressed = false; // variable for timer to disable arcane key functionality after no letter has been pressed for x amount of time
+uint16_t arcane_timer = 0;     // timer 
+uint16_t last_key_manual = 0; // for timer reset and adaptive keys
+uint16_t last_mod_manual = 0; // for timer reset and adaptive keys
+
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
+  AD_H,
+  AD_C,
+  AD_Y,
+  AD_Q,
+  AD_L,
+  AD_B,
+  AD_R,
+  AD_S,
+  AD_V,
+  AD_D,
+  AD_E,
+  AD_O,
+  AD_G,
 };
 
 
@@ -15,9 +33,9 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TAB,         KC_B,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_X,           KC_L,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
-    KC_BSPC,        KC_N,           KC_S,           KC_T,           KC_H,           KC_W,                                           KC_QUOTE,       KC_R,           KC_A,           KC_E,           KC_I,           KC_ENTER,       
-    LCTL(KC_Z),     KC_Q,           KC_G,           KC_V,           KC_D,           KC_F,                                           KC_Z,           KC_Y,           KC_DOT,         KC_SCLN,        KC_COMMA,       KC_ESCAPE,      
+    KC_TAB,         AD_B,           AD_C,           KC_M,           KC_P,           KC_K,                                           KC_X,           AD_L,           AD_O,           KC_U,           KC_J,           KC_MINUS,       
+    KC_BSPC,        KC_N,           AD_S,           KC_T,           AD_H,           KC_W,                                           KC_QUOTE,       AB_R,           KC_A,           AD_E,           KC_I,           KC_ENTER,       
+    LCTL(KC_Z),     AD_Q,           AD_G,           AD_V,           AD_D,           KC_F,                                           KC_Z,           AD_Y,           KC_DOT,         KC_SCLN,        KC_COMMA,       KC_ESCAPE,      
                                                     KC_SPACE,       OSL(1),                                         RCTL(KC_BSPC),  OSM(MOD_RSFT)
   ),
   [1] = LAYOUT_voyager(
@@ -95,13 +113,475 @@ combo_t key_combos[COMBO_COUNT] = {
 };
 
 
+bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
+                            uint8_t* remembered_mods) {
+    switch (keycode) {
+        case AD_H:
+        case AD_C:
+        case AD_Y:
+        case AD_Q:
+        case AD_L:
+        case AD_B:
+        case AD_R:
+        case AD_S:
+        case AD_V:
+        case AD_D:
+        case AD_E:
+        case AD_O:
+        case AD_G:
+            return false;  // Ignore ALTREP keys. If this is not here, only default action will be done, since the process stuff is apparently run after the remember last key stuff, so that the key is only ever trying to repeat itself.
+    }
 
+    return true;  // Other keys can be repeated.
+}
+
+static void process_adaptive_h(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_W:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_C));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_C));
+          }
+          break;      
+          case KC_QUOTE:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_R));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_R));
+          }
+          break;     
+          case KC_N:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_G));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_G));
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_H));
+    }
+}
+
+static void process_adaptive_c(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_W:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_H));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_H));
+          }
+          break;      
+          case KC_S:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_D));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_D));
+          }
+          break;     
+          case KC_B:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_S));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_S));
+          }
+          break;     
+      default: SEND_STRING(SS_TAP(X_C));
+    }
+}
+
+static void process_adaptive_y(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_L:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_Q));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_Q));
+          }
+          break;      
+          case KC_R:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_Q));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_Q));
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_Y));
+    }
+}
+
+static void process_adaptive_q(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_L:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_Y));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_Y));
+          }
+          break;      
+          case KC_R:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_Y));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_Y));
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_Q));
+    }
+}
+
+static void process_adaptive_l(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_R:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_B));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_B));
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_L));
+    }
+}
+
+static void process_adaptive_b(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_R:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_L));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_L);
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_B));
+    }
+}
+
+static void process_adaptive_r(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_QUOTE:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_H));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_H);
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_R));
+    }
+}
+
+static void process_adaptive_s(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_G:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_V));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_V));
+          }
+          break;      
+          case KC_B:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_C));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_C));
+          }
+          break;     
+      default: SEND_STRING(SS_TAP(X_S));
+    }
+}
+
+static void process_adaptive_v(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_G:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_S));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_S));
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_V));
+    }
+}
+
+static void process_adaptive_d(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_S:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_C));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_C));
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_D));
+    }
+}
+
+static void process_adaptive_e(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_U:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_O));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_O));
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_E));
+    }
+}
+
+static void process_adaptive_o(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_U:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_E));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_E));
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_O));
+    }
+}
+
+static void process_adaptive_g(uint16_t keycode, uint8_t mods) {
+    switch (keycode) {
+          case KC_N:
+          if (mods & MOD_MASK_SHIFT) { //checks for shift mod of previous key, which is also true of caps word shifted keys, but this is only run if is_caps_word_on() returned false
+              SEND_STRING(SS_TAP(X_H));
+          } else { //unshifted previous key
+              SEND_STRING(SS_TAP(X_H));
+          }
+          break;      
+      default: SEND_STRING(SS_TAP(X_G));
+    }
+}
+
+void matrix_scan_user(void) { // The very important timer.
+  if (alpha_pressed && timer_elapsed(arcane_timer) > 1000) { //triggers when timer elapsed
+      alpha_pressed = false;
+      set_last_keycode(KC_SPACE);
+  } else { //timer update
+    switch (get_last_keycode()) {
+      case KC_A ... KC_Z:
+      case KC_SCLN:
+      case KC_COMMA:
+      case KC_DOT:
+        if (last_key_manual != get_last_keycode()) {
+          last_key_manual = get_last_keycode();
+          last_mod_manual = get_last_mods();
+          alpha_pressed = true;
+          arcane_timer = timer_read();
+        }
+      break; //these were all the keys that keep the timer going
+      case KC_SPACE:
+      case KC_ENTER:
+      case KC_BSPC:
+      case RCTL(KC_BSPC):
+      last_key_manual = get_last_keycode();
+      alpha_pressed = false;
+      break; //these were all the keys that end the timer prematurely
+    }
+  }
+}
 
 
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case ADP_H: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_h(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_C: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_c(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_Y: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_y(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_Q: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_q(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_L: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_l(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_B: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_b(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_R: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_r(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_S: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_s(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_V: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_v(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_D: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_d(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_E: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_e(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_O: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_o(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    case ADP_G: 
+      if (record->event.pressed && layer_state_is(0)) {
+        if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+          caps_word_toggle(); //toggles on caps word if one shot shift is already active (e.g. through double-tapping the key
+        } else {
+          if (alpha_pressed) {// letter was pressed within timer limits
+            arcane_timer = timer_read(); // reset timer
+            process_adaptive_g(get_last_keycode(), get_last_mods()); // call arcane code
+          } else {//alpha timer timed out, so key functions just as a OSM shift
+            set_oneshot_mods(MOD_BIT(KC_LSFT));
+          }
+        }
+      }
+      break;
+
+    
   case QK_MODS ... QK_MODS_MAX:
     // Mouse and consumer keys (volume, media) with modifiers work inconsistently across operating systems,
     // this makes sure that modifiers are always applied to the key that was pressed.
