@@ -1,9 +1,12 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "features/adaptive_keys.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
 #endif
+
+#define ADAPTIVE_KEYS_ENABLE
 
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
