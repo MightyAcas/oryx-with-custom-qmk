@@ -7,7 +7,7 @@ AK(WS, KC_W, KC_S, false, KC_M)   // WS produces WM
 AK(LJ, KC_L, KC_J, false, KC_Y)   // LJ produces LY
 AK(LY, KC_L, KC_Y, false, KC_J)   // LY produces LJ
 
-AK(NB, KC_N, KC_R, false, KC_Y)   // NR produces NY
+AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY
 AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" sucks now but besides that this is the best i can prob do.
 
 AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE
@@ -27,7 +27,7 @@ AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
 
 // Lateral stretch reduction
 AK(MK, KC_M, KC_K, false, KC_B)   // MK produces MB
-AK(LY, KC_M, KC_B, false, KC_K)   // MB produces MK
+AK(MB, KC_M, KC_B, false, KC_K)   // MB produces MK
 
 // also here's a unique example i saw that i could maybe use at some point: AK(MG, KC_M, KC_G, true, KC_BSPC, KC_L)  ,   MG produces LG
 
