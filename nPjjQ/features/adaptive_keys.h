@@ -15,6 +15,10 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#pragma once
+
+#include QMK_KEYBOARD_H
 #include <stdbool.h>
 #include <stdint.h>
+
 bool process_adaptive_key(uint16_t keycode, keyrecord_t *record);
