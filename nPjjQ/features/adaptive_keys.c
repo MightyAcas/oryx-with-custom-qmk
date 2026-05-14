@@ -18,7 +18,7 @@
 /* This code is an adaptation of Alan Reiser's Adaptive keys as implemented */
 /* for Hands Down. */
 
-#include USERSPACE_H
+#include QMK_KEYBOARD_H
 #include "adaptive_keys.h"
 #include <stddef.h>
 
