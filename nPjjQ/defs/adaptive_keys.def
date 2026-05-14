@@ -1,0 +1,19 @@
+// Scissoring reduction
+AK(GV, KC_G, KC_V, false, KC_R)   // GV produces GR
+AK(GR, KC_G, KC_R, false, KC_V)   // MG produces LG ... AK(MG, KC_M, KC_G, true, KC_BSPC, KC_L) 
+
+AK(CM, KC_C, KC_M, false, KC_R)   // CM produces CR
+AK(CR, KC_C, KC_R, false, KC_M)   // CR produces CM
+
+AK(WC, KC_W, KC_C, false, KC_S)   // WC produces WS
+AK(WS, KC_W, KC_S, false, KC_C)   // WS produces WC
+  
+// SFB reduction
+AK(LQ, KC_L, KC_Q, false, KC_Y)   // LQ produces LY
+AK(UH, KC_W, KC_S, false, KC_C)   // LY produces LQ
+
+AK(NB, KC_N, KC_B, false, KC_Y)   // NB produces NY
+AK(NY, KC_N, KC_Y, false, KC_B)   // NY produces NB
+
+AK(NH, KC_N, KC_H, false, KC_L)   // NH produces NL
+AK(NL, KC_N, KC_L, false, KC_H)   // NL produces NH
