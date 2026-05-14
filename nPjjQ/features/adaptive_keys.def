@@ -1,6 +1,6 @@
 // Scissoring reduction
 AK(GV, KC_G, KC_V, false, KC_R)   // GV produces GR
-AK(GR, KC_G, KC_R, false, KC_V)   // GR produces GV ... AK(MG, KC_M, KC_G, true, KC_BSPC, KC_L) 
+AK(GR, KC_G, KC_R, false, KC_V)   // GR produces GV
 
 AK(CM, KC_C, KC_M, false, KC_R)   // CM produces CR
 AK(CR, KC_C, KC_R, false, KC_M)   // CR produces CM
@@ -15,5 +15,12 @@ AK(LY, KC_L, KC_Y, false, KC_Q)   // LY produces LQ
 AK(NB, KC_N, KC_B, false, KC_Y)   // NB produces NY
 AK(NY, KC_N, KC_Y, false, KC_B)   // NY produces NB
 
+AK(SV, KC_S, KC_V, false, KC_C)   // SV produces SC
+AK(SC, KC_S, KC_C, false, KC_V)   // SC produces SV ... this set of rules is kinda ass, but lets see how it is
+
 AK(NH, KC_N, KC_H, false, KC_L)   // NH produces NL
 AK(NL, KC_N, KC_L, false, KC_H)   // NL produces NH
+
+
+
+// also here's a unique example i saw that i could maybe use at some point: AK(MG, KC_M, KC_G, true, KC_BSPC, KC_L)  ,   MG produces LG
