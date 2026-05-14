@@ -6,8 +6,6 @@
 #define ZSA_SAFE_RANGE SAFE_RANGE
 #endif
 
-#define ADAPTIVE_KEYS_ENABLE
-
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
 };
@@ -107,6 +105,13 @@ combo_t key_combos[COMBO_COUNT] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+  #ifdef ADAPTIVE_KEYS_ENABLE
+    if (!process_adaptive_key(keycode, record)) {
+      return false;
+    }
+  #endif
+  
   switch (keycode) {
   case QK_MODS ... QK_MODS_MAX:
     // Mouse and consumer keys (volume, media) with modifiers work inconsistently across operating systems,
