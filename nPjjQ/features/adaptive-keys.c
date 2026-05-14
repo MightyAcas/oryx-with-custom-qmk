@@ -1,5 +1,5 @@
 /*
-  Copyright 2018-2022 Eric Gebhart <e.a.gebhart@gmail.com>
+  Copyright 2018-2022 EricaLinaQi <ericalinaqi@proton.me>>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
