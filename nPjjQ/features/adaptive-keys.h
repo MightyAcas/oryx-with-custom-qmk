@@ -1,6 +1,5 @@
-#pragma once
 /*
-  Copyright 2018 EricaLinaQi <ericalinaqi@proton.me>>
+  Copyright 2018-2022 EricaLinaQi <ericalinaqi@proton.me>>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -17,4 +16,5 @@
 */
 
 #include <stdbool.h>
-bool process_accent_keys(uint16_t keycode, keyrecord_t* record);
+#include <stdint.h>
+bool process_adaptive_key(uint16_t keycode, keyrecord_t *record);
