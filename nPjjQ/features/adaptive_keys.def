@@ -1,29 +1,41 @@
 // Scissoring reduction
-AK(GV, KC_G, KC_V, false, KC_R)   // GV produces GR
-AK(GR, KC_G, KC_R, false, KC_V)   // GR produces GV
 
-AK(CM, KC_C, KC_M, false, KC_R)   // CM produces CR
-AK(CR, KC_C, KC_R, false, KC_M)   // CR produces CM
-
-AK(WC, KC_W, KC_C, false, KC_S)   // WC produces WS
-AK(WS, KC_W, KC_S, false, KC_C)   // WS produces WC
+AK(WM, KC_W, KC_M, false, KC_S)   // WM produces WS
+AK(WS, KC_W, KC_S, false, KC_M)   // WS produces WM
   
 // SFB reduction
-AK(LQ, KC_L, KC_Q, false, KC_Y)   // LQ produces LY
-AK(LY, KC_L, KC_Y, false, KC_Q)   // LY produces LQ
+AK(LJ, KC_L, KC_J, false, KC_Y)   // LJ produces LY
+AK(LY, KC_L, KC_Y, false, KC_J)   // LY produces LJ
+
+AK(NB, KC_N, KC_R, false, KC_Y)   // NR produces NY
+AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" sucks now but besides that this is the best i can prob do.
 
 AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE
 AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO
 
-AK(NB, KC_N, KC_B, false, KC_Y)   // NB produces NY
-AK(NY, KC_N, KC_Y, false, KC_B)   // NY produces NB
-
-AK(SV, KC_S, KC_V, false, KC_C)   // SV produces SC
-AK(SC, KC_S, KC_C, false, KC_V)   // SC produces SV    ... this set of rules is kinda ass, but lets see how it is
+AK(GV, KC_G, KC_V, false, KC_S)   // GV produces GS
+AK(GS, KC_G, KC_S, false, KC_V)   // GS produces GV
 
 AK(NH, KC_N, KC_H, false, KC_L)   // NH produces NL
 AK(NL, KC_N, KC_L, false, KC_H)   // NL produces NH
 
+AK(PM, KC_P, KC_M, false, KC_H)   // PM produces PH
+AK(PH, KC_P, KC_H, false, KC_M)   // PH produces PM
 
+AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR
+AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
+
+// Lateral stretch reduction
+AK(MK, KC_M, KC_K, false, KC_B)   // MK produces MB
+AK(LY, KC_M, KC_B, false, KC_K)   // MB produces MK
 
 // also here's a unique example i saw that i could maybe use at some point: AK(MG, KC_M, KC_G, true, KC_BSPC, KC_L)  ,   MG produces LG
+
+// AK(CM, KC_C, KC_M, false, KC_R)   , CM produces CR
+// AK(CR, KC_C, KC_R, false, KC_M)   , CR produces CM
+
+// AK(GV, KC_G, KC_V, false, KC_R)   , GV produces GR
+// AK(GR, KC_G, KC_R, false, KC_V)   , GR produces GV
+
+// AK(SV, KC_S, KC_V, false, KC_C)   , SV produces SC
+// AK(SC, KC_S, KC_C, false, KC_V)   , SC produces SV    ... these 2 rules are kinda ass, S pairs well with like nothing thats in a good spot. might just have to tank
