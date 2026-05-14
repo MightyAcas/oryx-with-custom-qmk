@@ -12,11 +12,14 @@ AK(WS, KC_W, KC_S, false, KC_C)   // WS produces WC
 AK(LQ, KC_L, KC_Q, false, KC_Y)   // LQ produces LY
 AK(LY, KC_L, KC_Y, false, KC_Q)   // LY produces LQ
 
+AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE
+AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO
+
 AK(NB, KC_N, KC_B, false, KC_Y)   // NB produces NY
 AK(NY, KC_N, KC_Y, false, KC_B)   // NY produces NB
 
 AK(SV, KC_S, KC_V, false, KC_C)   // SV produces SC
-AK(SC, KC_S, KC_C, false, KC_V)   // SC produces SV ... this set of rules is kinda ass, but lets see how it is
+AK(SC, KC_S, KC_C, false, KC_V)   // SC produces SV    ... this set of rules is kinda ass, but lets see how it is
 
 AK(NH, KC_N, KC_H, false, KC_L)   // NH produces NL
 AK(NL, KC_N, KC_L, false, KC_H)   // NL produces NH
