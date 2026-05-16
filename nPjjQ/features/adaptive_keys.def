@@ -43,5 +43,5 @@ AK(MB, KC_M, KC_B, false, KC_K)   // MB produces MK
 // AK(SV, KC_S, KC_V, false, KC_C)   , SV produces SC
 // AK(SC, KC_S, KC_C, false, KC_V)   , SC produces SV    ... these 2 rules are kinda ass, S pairs well with like nothing thats in a good spot. might just have to tank
 
-// AK(HN, KC_H, KC_N, false, KC_T)   // HN produces HT   ... alternation
-// AK(HT, KC_H, KC_T, false, KC_J)   // HT produces HN   ... "ght" can be a slow sequence at times
+// AK(HN, KC_H, KC_N, false, KC_T)   , HN produces HT   ... alternation
+// AK(HT, KC_H, KC_T, false, KC_J)   , HT produces HN   ... "ght" can be a slow sequence at times
