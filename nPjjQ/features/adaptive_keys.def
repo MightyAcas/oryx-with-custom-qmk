@@ -2,6 +2,9 @@
 
 AK(WM, KC_W, KC_M, false, KC_S)   // WM produces WS   ... inroll
 AK(WS, KC_W, KC_S, false, KC_M)   // WS produces WM   ... 
+
+AK(GV, KC_G, KC_V, false, KC_R)   // GV produces GR   ... inroll
+AK(GR, KC_G, KC_R, false, KC_V)   // GS produces GV
   
 // SFB reduction
 AK(LJ, KC_L, KC_J, false, KC_Y)   // LJ produces LY   ... outroll
@@ -13,11 +16,11 @@ AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere
 AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE   ... inroll
 AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO
 
-AK(GV, KC_G, KC_V, false, KC_S)   // GV produces GS   ... inroll
-AK(GS, KC_G, KC_S, false, KC_V)   // GS produces GV
+AK(NH, KC_N, KC_H, false, KC_QUOTE)   // NH produces N'   ... alternation
+AK(N', KC_N, KC_QUOTE, false, KC_H)   // N' produces NH
 
-AK(NH, KC_N, KC_H, false, KC_L)   // NH produces NL   ... alternation
-AK(NL, KC_N, KC_L, false, KC_H)   // NL produces NH
+AK(NB, KC_N, KC_B, false, KC_L)   // NB produces NL   ... alternation
+AK(NL, KC_N, KC_L, false, KC_B)   // NL produces NB
 
 AK(PM, KC_P, KC_M, false, KC_H)   // PM produces PH   ... outroll
 AK(PH, KC_P, KC_H, false, KC_M)   // PH produces PM
@@ -29,10 +32,6 @@ AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
 AK(MK, KC_M, KC_K, false, KC_B)   // MK produces MB   ... inroll
 AK(MB, KC_M, KC_B, false, KC_K)   // MB produces MK
 
-// Misc.
-AK(HN, KC_H, KC_N, false, KC_T)   // HN produces HT   ... alternation
-AK(HT, KC_H, KC_T, false, KC_J)   // HT produces HN   ... "ght" can be a slow sequence at times
-
 // also here's a unique example i saw that i could maybe use at some point: AK(MG, KC_M, KC_G, true, KC_BSPC, KC_L)  ,   MG produces LG
 
 // AK(CM, KC_C, KC_M, false, KC_R)   , CM produces CR
@@ -43,3 +42,6 @@ AK(HT, KC_H, KC_T, false, KC_J)   // HT produces HN   ... "ght" can be a slow se
 
 // AK(SV, KC_S, KC_V, false, KC_C)   , SV produces SC
 // AK(SC, KC_S, KC_C, false, KC_V)   , SC produces SV    ... these 2 rules are kinda ass, S pairs well with like nothing thats in a good spot. might just have to tank
+
+// AK(HN, KC_H, KC_N, false, KC_T)   // HN produces HT   ... alternation
+// AK(HT, KC_H, KC_T, false, KC_J)   // HT produces HN   ... "ght" can be a slow sequence at times
