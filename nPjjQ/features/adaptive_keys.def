@@ -1,33 +1,37 @@
 // Scissoring reduction
 
-AK(WM, KC_W, KC_M, false, KC_S)   // WM produces WS
+AK(WM, KC_W, KC_M, false, KC_S)   // WM produces WS   ... inroll
 AK(WS, KC_W, KC_S, false, KC_M)   // WS produces WM
   
 // SFB reduction
-AK(LJ, KC_L, KC_J, false, KC_Y)   // LJ produces LY
+AK(LJ, KC_L, KC_J, false, KC_Y)   // LJ produces LY   ... outroll
 AK(LY, KC_L, KC_Y, false, KC_J)   // LY produces LJ
 
-AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY
+AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternation
 AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" sucks now but besides that this is the best i can prob do.
 
-AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE
+AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE   ... inroll
 AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO
 
-AK(GV, KC_G, KC_V, false, KC_S)   // GV produces GS
+AK(GV, KC_G, KC_V, false, KC_S)   // GV produces GS   ... inroll
 AK(GS, KC_G, KC_S, false, KC_V)   // GS produces GV
 
-AK(NH, KC_N, KC_H, false, KC_L)   // NH produces NL
+AK(NH, KC_N, KC_H, false, KC_L)   // NH produces NL   ... alternation
 AK(NL, KC_N, KC_L, false, KC_H)   // NL produces NH
 
-AK(PM, KC_P, KC_M, false, KC_H)   // PM produces PH
+AK(PM, KC_P, KC_M, false, KC_H)   // PM produces PH   ... outroll
 AK(PH, KC_P, KC_H, false, KC_M)   // PH produces PM
 
-AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR
+AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
 
 // Lateral stretch reduction
-AK(MK, KC_M, KC_K, false, KC_B)   // MK produces MB
+AK(MK, KC_M, KC_K, false, KC_B)   // MK produces MB   ... inroll
 AK(MB, KC_M, KC_B, false, KC_K)   // MB produces MK
+
+// Misc.
+AK(HJ, KC_H, KC_J, false, KC_T)   // HJ produces HT   ... alternation
+AK(HT, KC_H, KC_T, false, KC_J)   // HT produces HJ   ... "ght" can be a slow sequence at times
 
 // also here's a unique example i saw that i could maybe use at some point: AK(MG, KC_M, KC_G, true, KC_BSPC, KC_L)  ,   MG produces LG
 
