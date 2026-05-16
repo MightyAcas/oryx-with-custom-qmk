@@ -1,7 +1,7 @@
 // Scissoring reduction
 
 AK(WM, KC_W, KC_M, false, KC_S)   // WM produces WS   ... inroll
-AK(WS, KC_W, KC_S, false, KC_M)   // WS produces WM
+AK(WS, KC_W, KC_S, false, KC_M)   // WS produces WM   ... 
   
 // SFB reduction
 AK(LJ, KC_L, KC_J, false, KC_Y)   // LJ produces LY   ... outroll
@@ -30,8 +30,8 @@ AK(MK, KC_M, KC_K, false, KC_B)   // MK produces MB   ... inroll
 AK(MB, KC_M, KC_B, false, KC_K)   // MB produces MK
 
 // Misc.
-AK(HJ, KC_H, KC_J, false, KC_T)   // HJ produces HT   ... alternation
-AK(HT, KC_H, KC_T, false, KC_J)   // HT produces HJ   ... "ght" can be a slow sequence at times
+AK(HN, KC_H, KC_N, false, KC_T)   // HN produces HT   ... alternation
+AK(HT, KC_H, KC_T, false, KC_J)   // HT produces HN   ... "ght" can be a slow sequence at times
 
 // also here's a unique example i saw that i could maybe use at some point: AK(MG, KC_M, KC_G, true, KC_BSPC, KC_L)  ,   MG produces LG
 
