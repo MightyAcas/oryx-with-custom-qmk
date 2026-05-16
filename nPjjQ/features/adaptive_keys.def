@@ -17,7 +17,7 @@ AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE   ... inroll
 AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO
 
 AK(NH, KC_N, KC_H, false, KC_QUOTE)   // NH produces N'   ... alternation
-AK(N', KC_N, KC_QUOTE, false, KC_H)   // N' produces NH
+AK(NQ, KC_N, KC_QUOTE, false, KC_H)   // N' produces NH
 
 AK(NB, KC_N, KC_B, false, KC_L)   // NB produces NL   ... alternation
 AK(NL, KC_N, KC_L, false, KC_B)   // NL produces NB
