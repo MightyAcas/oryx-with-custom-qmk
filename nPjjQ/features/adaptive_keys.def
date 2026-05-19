@@ -29,8 +29,8 @@ AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
 
 // Lateral stretch reduction & redirect
-AK(MK, KC_M, KC_K, false, KC_B)   // MK produces MB   ... inroll
-AK(MB, KC_M, KC_B, false, KC_K)   // MB produces MK
+AK(MK, KC_M, KC_K, false, KC_C)   // MK produces MB   ... outroll
+AK(MC, KC_M, KC_C, false, KC_K)   // MB produces MK
 
 AK(HN, KC_H, KC_N, false, KC_T)   // HN produces HT   ... alternation
 AK(HT, KC_H, KC_T, false, KC_N)   // HT produces HN   ... "ght" can be a slow sequence at times
