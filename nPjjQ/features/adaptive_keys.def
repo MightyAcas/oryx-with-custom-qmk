@@ -1,11 +1,5 @@
 // Scissoring reduction
 
-AK(WM, KC_W, KC_M, false, KC_S)   // WM produces WS   ... inroll
-AK(WS, KC_W, KC_S, false, KC_M)   // WS produces WM   ... 
-
-AK(GV, KC_G, KC_V, false, KC_R)   // GV produces GR   ... inroll
-AK(GR, KC_G, KC_R, false, KC_V)   // GS produces GV
-
 AK(QO, KC_Q, KC_O, true, KC_BSPC, KC_Y)   // QO produces YO
   
 // SFB reduction
@@ -21,20 +15,9 @@ AK(NQ, KC_N, KC_QUOTE, false, KC_H)   // N' produces NH
 AK(NB, KC_N, KC_B, false, KC_L)   // NB produces NL   ... alternation
 AK(NL, KC_N, KC_L, false, KC_B)   // NL produces NB
 
-AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE   ... inroll
-AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO
-
-AK(PM, KC_P, KC_M, false, KC_H)   // PM produces PH   ... outroll
-AK(PH, KC_P, KC_H, false, KC_M)   // PH produces PM
-
-AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
-AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
-
 // Lateral stretch reduction & redirect
 AK(MC, KC_M, KC_C, false, KC_B)   // MC produces MB   ... outroll
 AK(MB, KC_M, KC_B, false, KC_C)   // MB produces MC
-
-AK(DT, KC_D, KC_T, true, KC_BSPC, KC_F)   // DT produces FT
 
 AK(HN, KC_H, KC_N, false, KC_T)   // HN produces HT   ... alternation
 AK(HT, KC_H, KC_T, false, KC_N)   // HT produces HN   ... "ght" can be a slow sequence at times
@@ -49,3 +32,23 @@ AK(HT, KC_H, KC_T, false, KC_N)   // HT produces HN   ... "ght" can be a slow se
 
 // AK(SV, KC_S, KC_V, false, KC_C)   , SV produces SC
 // AK(SC, KC_S, KC_C, false, KC_V)   , SC produces SV    ... these 2 rules are kinda ass, S pairs well with like nothing thats in a good spot. might just have to tank
+
+
+
+
+// AK(WM, KC_W, KC_M, false, KC_S)   // WM produces WS   ... inroll
+// AK(WS, KC_W, KC_S, false, KC_M)   // WS produces WM   ... 
+
+// AK(GV, KC_G, KC_V, false, KC_R)   // GV produces GR   ... inroll
+// AK(GR, KC_G, KC_R, false, KC_V)   // GS produces GV
+
+
+
+// AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE   ... inroll
+// AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO
+
+// AK(PM, KC_P, KC_M, false, KC_H)   // PM produces PH   ... outroll
+// AK(PH, KC_P, KC_H, false, KC_M)   // PH produces PM
+
+// AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
+// AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
