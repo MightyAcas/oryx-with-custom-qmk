@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "features/adaptive_keys.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
@@ -86,6 +87,13 @@ combo_t key_combos[COMBO_COUNT] = {
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+  #ifdef ADAPTIVE_KEYS_ENABLE
+    if (!process_adaptive_key(keycode, record)) {
+      return false;
+    }
+  #endif
+  
   switch (keycode) {
 
     case RGB_SLD:

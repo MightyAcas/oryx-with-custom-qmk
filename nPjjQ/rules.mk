@@ -7,3 +7,4 @@ SPACE_CADET_ENABLE = no
 REPEAT_KEY_ENABLE = yes
 COMBO_ENABLE = yes
 LAYER_LOCK_ENABLE = yes
+SRC += features/adaptive_keys.c
