@@ -6,8 +6,8 @@ AK(GR, KC_G, KC_R, false, KC_V)   // GR produces GV
 AK(QO, KC_Q, KC_O, true, KC_BSPC, KC_Y)   // QO produces YO
   
 // SFB reduction
-AK(LJ, KC_L, KC_J, false, KC_Y)   // LJ produces LY   ... outroll
-AK(LY, KC_L, KC_Y, false, KC_J)   // LY produces LJ
+AK(L;, KC_L, KC_SCLN, false, KC_Y)   // L; produces LY   ... outroll
+AK(LY, KC_L, KC_Y, false, KC_SCLN)   // LY produces L;
 
 AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternation
 AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" sucks now but besides that this is the best i can prob do.
