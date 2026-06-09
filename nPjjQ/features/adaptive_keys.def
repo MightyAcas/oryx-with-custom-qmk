@@ -6,7 +6,7 @@ AK(GR, KC_G, KC_R, false, KC_V)   // GR produces GV
 AK(QO, KC_Q, KC_O, true, KC_BSPC, KC_Y)   // QO produces YO
   
 // SFB reduction
-AK(L;, KC_L, KC_SCLN, false, KC_Y)   // L; produces LY   ... outroll
+AK(LS, KC_L, KC_SCLN, false, KC_Y)   // L; produces LY   ... outroll
 AK(LY, KC_L, KC_Y, false, KC_SCLN)   // LY produces L;
 
 AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternation
