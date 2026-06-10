@@ -3,14 +3,13 @@
 AK(GV, KC_G, KC_V, false, KC_R)   // GV produces GR   ... inroll
 AK(GR, KC_G, KC_R, false, KC_V)   // GR produces GV
 
-AK(QO, KC_Q, KC_O, true, KC_BSPC, KC_Y)   // QO produces YO
-  
+
 // SFB reduction
-AK(LS, KC_L, KC_SCLN, false, KC_Y)   // L; produces LY   ... outroll
-AK(LY, KC_L, KC_Y, false, KC_SCLN)   // LY produces L;
+AK(LJ, KC_L, KC_J, false, KC_Y)   // LJ produces LY   ... outroll
+AK(LY, KC_L, KC_Y, false, KC_J)   // LY produces LJ
 
 AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternation
-AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" sucks now but besides that this is the best i can prob do.
+AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" suck now but besides that this is the best i can prob do
 
 AK(NH, KC_N, KC_H, false, KC_QUOTE)   // NH produces N'   ... alternation
 AK(NQ, KC_N, KC_QUOTE, false, KC_H)   // N' produces NH
@@ -21,28 +20,31 @@ AK(NL, KC_N, KC_L, false, KC_B)   // NL produces NB
 AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
 
+
 // Lateral stretch reduction & redirect
 AK(MC, KC_M, KC_C, false, KC_B)   // MC produces MB   ... outroll
 AK(MB, KC_M, KC_B, false, KC_C)   // MB produces MC
 
 AK(HN, KC_H, KC_N, false, KC_T)   // HN produces HT   ... alternation
-AK(HT, KC_H, KC_T, false, KC_N)   // HT produces HN   ... "ght" can be a slow sequence at times
+AK(HT, KC_H, KC_T, false, KC_N)   // HT produces HN   ... "ght" can be a slow sequence at times, this helps
 
-// also here's a unique example i saw that i could maybe use at some point: AK(MG, KC_M, KC_G, true, KC_BSPC, KC_L)  ,   MG produces LG
+
+
+
+
+
+// UNUSED RULES I MIGHT BRING BACK AT SOME POINT
+
+// AK(QO, KC_Q, KC_O, true, KC_BSPC, KC_Y)   // QO produces YO
 
 // AK(CM, KC_C, KC_M, false, KC_R)   , CM produces CR
 // AK(CR, KC_C, KC_R, false, KC_M)   , CR produces CM
 
 // AK(SV, KC_S, KC_V, false, KC_C)   , SV produces SC
-// AK(SC, KC_S, KC_C, false, KC_V)   , SC produces SV    ... these 2 rules are kinda ass, S pairs well with like nothing thats in a good spot. might just have to tank
-
-
-
+// AK(SC, KC_S, KC_C, false, KC_V)   , SC produces SV    ... this rule is kinda ass, S pairs well with like nothing thats in a good spot. might just have to tank the SFB
 
 // AK(WM, KC_W, KC_M, false, KC_S)   // WM produces WS   ... inroll
 // AK(WS, KC_W, KC_S, false, KC_M)   // WS produces WM   ... 
-
-
 
 // AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE   ... inroll
 // AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO
