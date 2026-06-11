@@ -8,7 +8,7 @@ AK(GR, KC_G, KC_R, false, KC_V)   // GR produces GV
 AK(LJ, KC_L, KC_J, false, KC_Y)   // LJ produces LY   ... outroll
 AK(LY, KC_L, KC_Y, false, KC_J)   // LY produces LJ
 
-AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternation
+AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternationn
 AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" suck now but besides that this is the best i can prob do
 
 AK(NH, KC_N, KC_H, false, KC_QUOTE)   // NH produces N'   ... alternation
@@ -25,15 +25,15 @@ AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
 AK(MC, KC_M, KC_C, false, KC_B)   // MC produces MB   ... outroll
 AK(MB, KC_M, KC_B, false, KC_C)   // MB produces MC
 
-AK(HN, KC_H, KC_N, false, KC_T)   // HN produces HT   ... alternation
-AK(HT, KC_H, KC_T, false, KC_N)   // HT produces HN   ... "ght" can be a slow sequence at times, this helps
-
 
 
 
 
 
 // UNUSED RULES I MIGHT BRING BACK AT SOME POINT
+
+// AK(HN, KC_H, KC_N, false, KC_T)   // HN produces HT   ... alternation
+// AK(HT, KC_H, KC_T, false, KC_N)   // HT produces HN   ... "ght" can be a slow sequence at times, this helps
 
 // AK(QO, KC_Q, KC_O, true, KC_BSPC, KC_Y)   // QO produces YO
 
