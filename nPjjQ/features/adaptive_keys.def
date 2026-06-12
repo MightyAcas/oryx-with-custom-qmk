@@ -21,7 +21,11 @@ AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
 
 
-// Lateral stretch reduction & redirect
+// Lateral stretch reduction
+
+AK(CP, KC_C, KC_P, false, KC_K)   // CP produces CK   ... inroll
+AK(CK, KC_C, KC_K, false, KC_P)   // CK produces CP
+
 AK(MC, KC_M, KC_C, false, KC_B)   // MC produces MB   ... outroll
 AK(MB, KC_M, KC_B, false, KC_C)   // MB produces MC
 
