@@ -29,17 +29,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [2] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_PIPE,        KC_AMPR,        KC_NO,          KC_NO,          KC_NO,          KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,                                         KC_BSLS,        KC_DLR,         KC_PERC,        KC_CIRC,        KC_NO,          KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_F11,         KC_F12,         RGB_TOG,        RGB_MODE_FORWARD,LED_LEVEL,                                      KC_TILD,        KC_GRAVE,       KC_AT,          KC_HASH,        KC_NO,          KC_TRANSPARENT, 
-                                                    KC_TRANSPARENT, KC_NO,                                          TO(0),          KC_TRANSPARENT
+    KC_TRANSPARENT, KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          RGB_TOG,        KC_AMPR,        KC_BSLS,        KC_PIPE,        KC_TILD,        KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,                                         RGB_MODE_FORWARD,KC_DLR,         KC_PERC,        KC_CIRC,        KC_GRAVE,       KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_F11,         KC_F12,         KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,                                LED_LEVEL,      KC_NO,          KC_AT,          KC_HASH,        KC_NO,          KC_TRANSPARENT, 
+                                                    KC_TRANSPARENT, TO(0),                                          TO(0),          KC_NO
   ),
   [3] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSPC,        
-    KC_LEFT_CTRL,   KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        KC_RIGHT_ALT,   
-    KC_LEFT_ALT,    KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_RIGHT_CTRL,  
-                                                    KC_SPACE,       KC_RIGHT_SHIFT,                                 KC_LEFT_ALT,    KC_ENTER
+    KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,                                           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_LEFT_ALT,    
+    KC_LEFT_SHIFT,  KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                           KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        KC_RIGHT_ALT,   
+    KC_LEFT_CTRL,   KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       KC_RIGHT_CTRL,  
+                                                    KC_SPACE,       KC_BSPC,                                        KC_ENTER,       KC_RIGHT_SHIFT
   ),
 };
 
@@ -51,7 +51,7 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
-const uint16_t PROGMEM combo0[] = { KC_LEFT_ALT, KC_ENTER, COMBO_END};
+const uint16_t PROGMEM combo0[] = { KC_ENTER, KC_RIGHT_SHIFT, COMBO_END};
 const uint16_t PROGMEM combo1[] = { KC_TAB, KC_Q, COMBO_END};
 const uint16_t PROGMEM combo2[] = { KC_P, KC_H, COMBO_END};
 const uint16_t PROGMEM combo3[] = { KC_L, KC_N, COMBO_END};
@@ -87,6 +87,22 @@ combo_t key_combos[COMBO_COUNT] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+  case QK_MODS ... QK_MODS_MAX:
+    // Mouse and consumer keys (volume, media) with modifiers work inconsistently across operating systems,
+    // this makes sure that modifiers are always applied to the key that was pressed.
+    if (IS_CONSUMER_KEYCODE(QK_MODS_GET_BASIC_KEYCODE(keycode))) {
+      if (record->event.pressed) {
+        add_mods(QK_MODS_GET_MODS(keycode));
+        send_keyboard_report();
+        wait_ms(2);
+        register_code(QK_MODS_GET_BASIC_KEYCODE(keycode));
+        return false;
+      } else {
+        wait_ms(2);
+        del_mods(QK_MODS_GET_MODS(keycode));
+      }
+    }
+    break;
 
     case RGB_SLD:
       if (record->event.pressed) {
