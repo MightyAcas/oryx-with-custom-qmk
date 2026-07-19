@@ -5,20 +5,15 @@ AK(GR, KC_G, KC_R, false, KC_V)   // GR produces GV
 
 
 // SFB reduction
+
 AK(LJ, KC_L, KC_Q, false, KC_Y)   // LQ produces LY   ... alternation
 AK(LY, KC_L, KC_Y, false, KC_Q)   // LY produces LQ
-
-AK(NB, KC_N, KC_B, false, KC_L)   // NB produces NL   ... alternation
-AK(NL, KC_N, KC_L, false, KC_B)   // NL produces NB
 
 AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
 
 
 // Lateral stretch reduction
-
-AK(CP, KC_C, KC_P, false, KC_K)   // CP produces CK   ... inroll
-AK(CK, KC_C, KC_K, false, KC_P)   // CK produces CP
 
 AK(MC, KC_M, KC_C, false, KC_B)   // MC produces MB   ... outroll
 AK(MB, KC_M, KC_B, false, KC_C)   // MB produces MC
@@ -29,6 +24,12 @@ AK(MB, KC_M, KC_B, false, KC_C)   // MB produces MC
 
 
 // UNUSED RULES I MIGHT BRING BACK AT SOME POINT
+
+// AK(CP, KC_C, KC_P, false, KC_K)   // CP produces CK   ... inroll
+// AK(CK, KC_C, KC_K, false, KC_P)   // CK produces CP
+
+// AK(NB, KC_N, KC_B, false, KC_L)   // NB produces NL   ... alternation
+// AK(NL, KC_N, KC_L, false, KC_B)   // NL produces NB
 
 // AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternationn
 // AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" suck now but besides that this is the best i can prob do
