@@ -10,25 +10,25 @@ AK(LJ, KC_L, KC_Q, false, KC_Y)   // LQ produces LY   ... alternation
 AK(LY, KC_L, KC_Y, false, KC_Q)   // LY produces LQ
 
 AK(NB, KC_N, KC_B, false, KC_L)   // NB produces NL   ... alternation
-AK(NL, KC_N, KC_L, false, KC_B)   // NL produces NB
+AK(NL, KC_N, KC_L, false, KC_B)   // NL produces NB   ... literally just here for "only" and "online"
 
 AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternationn
 AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" suck now but besides that this is the best i can prob do
 
 AK(NH, KC_N, KC_H, false, KC_QUOTE)   // NH produces N'   ... alternation
-AK(NQ, KC_N, KC_QUOTE, false, KC_H)   // N' produces NH
+AK(NQ, KC_N, KC_QUOTE, false, KC_H)   // N' produces NH   ... creates "n't" outroll which is nice
 
 AK(PM, KC_P, KC_M, false, KC_H)   // PM produces PH   ... outroll
-AK(PH, KC_P, KC_H, false, KC_M)   // PH produces PM
+AK(PH, KC_P, KC_H, false, KC_M)   // PH produces PM   ... could just be a slide tbh
 
-AK(SV, KC_S, KC_V, false, KC_C)   // SV produces SC    ... inroll scissor (lmao)
-AK(SC, KC_S, KC_C, false, KC_V)   // SC produces SV    ... S pairs well with like nothing thats in a good spot. will see how this goes
+AK(SR, KC_S, KC_R, false, KC_C)   // SR produces SC    ... outroll
+AK(SC, KC_S, KC_C, false, KC_R)   // SC produces SR    ... huh, didnt realize how SR is a very uncommon bigram. kinda feel stupid for not thinking of this earlier
 
 AK(UO, KC_U, KC_O, false, KC_E)   // UO produces UE   ... inroll
-AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO
+AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO   ... free stats, but tbd on whether i will get used to using this
 
 AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
-AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC
+AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC   ... prob the best of the slide turned into adaptive rules
 
 
 
