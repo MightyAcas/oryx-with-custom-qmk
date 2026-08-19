@@ -30,6 +30,9 @@ AK(UE, KC_U, KC_E, false, KC_O)   // UE produces UO   ... free stats, but tbd on
 AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC   ... prob the best of the slide turned into adaptive rules
 
+AK(GQ, KC_G, KC_Q, false, KC_S)   // GQ produces GS   ... outroll
+AK(GS, KC_G, KC_S, false, KC_Q)   // GS produces GQ   ... another one i feel stupid for not finding before now
+
 
 
 
