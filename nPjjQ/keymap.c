@@ -15,9 +15,9 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_X,           KC_Y,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
+    KC_TAB,         KC_W,           KC_C,           KC_M,           KC_P,           KC_K,                                           KC_Z,           KC_Y,           KC_O,           KC_U,           KC_J,           KC_MINUS,       
     KC_BSPC,        KC_R,           KC_S,           KC_T,           KC_H,           KC_F,                                           KC_QUOTE,       KC_N,           KC_A,           KC_E,           KC_I,           KC_ENTER,       
-    LCTL(KC_BSPC),  KC_Q,           KC_G,           KC_V,           KC_D,           KC_B,                                           KC_Z,           KC_L,           KC_DOT,         KC_SCLN,        KC_COMMA,       KC_LEFT_ALT,    
+    LCTL(KC_BSPC),  KC_Q,           KC_G,           KC_V,           KC_D,           KC_B,                                           KC_X,           KC_L,           KC_DOT,         KC_SCLN,        KC_COMMA,       KC_LEFT_ALT,    
                                                     KC_SPACE,       OSL(1),                                         OSL(2),         OSM(MOD_RSFT)
   ),
   [1] = LAYOUT_voyager(
