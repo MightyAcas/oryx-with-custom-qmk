@@ -6,24 +6,25 @@ AK(GR, KC_G, KC_R, false, KC_V)   // GR produces GV
 
 // SFB reduction
 
-AK(KH, KC_K, KC_H, false, KC_N)   // KH produces KN   ... alternation
-AK(KN, KC_K, KC_N, false, KC_H)   // KN produces KH   ... 
+AK(LH, KC_L, KC_H, false, KC_Y)   // LH produces LY   ... alternation
+AK(LY, KC_L, KC_Y, false, KC_H)   // LY produces LH
 
-AK(LN, KC_L, KC_N, false, KC_Y)   // LN produces LY   ... alternation
-AK(LY, KC_L, KC_Y, false, KC_N)   // LY produces LN
+AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternationn
+AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" suck now but besides that this is the best i can prob do
 
-AK(NH, KC_N, KC_H, false, KC_D)   // NH produces ND   ... alternation
-AK(ND, KC_N, KC_D, false, KC_H)   // ND produces NH   ... 
+AK(NH, KC_N, KC_H, false, KC_QUOTE)   // NH produces N'   ... alternation
+AK(NQ, KC_N, KC_QUOTE, false, KC_H)   // N' produces NH   ... creates "n't" outroll which is nice
 
-AK(SD, KC_S, KC_D, false, KC_C)   // SD produces SC    ... outroll
-AK(SC, KC_S, KC_C, false, KC_D)   // SC produces SD    ... 
+AK(SR, KC_S, KC_R, false, KC_C)   // SR produces SC    ... outroll
+AK(SC, KC_S, KC_C, false, KC_R)   // SC produces SR    ... huh, didnt realize how SR is a very uncommon bigram. kinda feel stupid for not thinking of this earlier. just.. don't think about SCR too much lol
 
 AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC   ... prob the best of the slide turned into adaptive rules
 
 
 
-// vylet v4 config
+// vylet v5 config
+
 // Scissoring reduction
 
 // AK(GV, KC_G, KC_V, false, KC_R)   // GV produces GR   ... inroll
@@ -32,17 +33,17 @@ AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC   ... prob the best of the s
 
 // SFB reduction
 
-// AK(LH, KC_L, KC_H, false, KC_Y)   // LH produces LY   ... alternation
-// AK(LY, KC_L, KC_Y, false, KC_H)   // LY produces LH
+// AK(KH, KC_K, KC_H, false, KC_N)   // KH produces KN   ... alternation
+// AK(KN, KC_K, KC_N, false, KC_H)   // KN produces KH   ... 
 
-// AK(NR, KC_N, KC_R, false, KC_Y)   // NR produces NY   ... alternationn
-// AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere" suck now but besides that this is the best i can prob do
+// AK(LN, KC_L, KC_N, false, KC_Y)   // LN produces LY   ... alternation
+// AK(LY, KC_L, KC_Y, false, KC_N)   // LY produces LN
 
-// AK(NH, KC_N, KC_H, false, KC_QUOTE)   // NH produces N'   ... alternation
-// AK(NQ, KC_N, KC_QUOTE, false, KC_H)   // N' produces NH   ... creates "n't" outroll which is nice
+// AK(NH, KC_N, KC_H, false, KC_D)   // NH produces ND   ... alternation
+// AK(ND, KC_N, KC_D, false, KC_H)   // ND produces NH   ... 
 
-// AK(SR, KC_S, KC_R, false, KC_C)   // SR produces SC    ... outroll
-// AK(SC, KC_S, KC_C, false, KC_R)   // SC produces SR    ... huh, didnt realize how SR is a very uncommon bigram. kinda feel stupid for not thinking of this earlier
+// AK(SD, KC_S, KC_D, false, KC_C)   // SD produces SC    ... outroll
+// AK(SC, KC_S, KC_C, false, KC_D)   // SC produces SD    ... 
 
 // AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 // AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC   ... prob the best of the slide turned into adaptive rules
