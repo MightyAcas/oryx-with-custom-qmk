@@ -15,9 +15,6 @@ AK(NY, KC_N, KC_Y, false, KC_R)   // NY produces NR   ... "anyway" and "anywhere
 AK(NH, KC_N, KC_H, false, KC_QUOTE)   // NH produces N'   ... alternation
 AK(NQ, KC_N, KC_QUOTE, false, KC_H)   // N' produces NH   ... creates "n't" outroll which is nice
 
-AK(SR, KC_S, KC_R, false, KC_C)   // SR produces SC    ... outroll
-AK(SC, KC_S, KC_C, false, KC_R)   // SC produces SR    ... huh, didnt realize how SR is a very uncommon bigram. kinda feel stupid for not thinking of this earlier. just.. don't think about SCR too much lol
-
 AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC   ... prob the best of the slide turned into adaptive rules
 
