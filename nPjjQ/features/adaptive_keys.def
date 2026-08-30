@@ -56,6 +56,9 @@ AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC   ... prob the best of the s
 
 // UNUSED RULES I MIGHT BRING BACK AT SOME POINT
 
+// AK(SR, KC_S, KC_R, false, KC_C)   // SR produces SC    ... outroll
+// AK(SC, KC_S, KC_C, false, KC_R)   // SC produces SR    ... huh, didnt realize how SR is a very uncommon bigram. kinda feel stupid for not thinking of this earlier. just.. don't think about SCR too much lol
+
 // AK(NB, KC_N, KC_B, false, KC_L)   // NB produces NL   ... alternation
 // AK(NL, KC_N, KC_L, false, KC_B)   // NL produces NB   ... literally just here for "only" and "online"
 
