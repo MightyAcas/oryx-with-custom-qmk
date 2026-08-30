@@ -24,15 +24,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_ESCAPE,      KC_HOME,        KC_UP,          KC_END,         KC_PAGE_UP,                                     KC_PLUS,        KC_7,           KC_8,           KC_9,           KC_ASTR,        KC_TRANSPARENT, 
     KC_TRANSPARENT, QK_LLCK,        KC_LEFT,        KC_DOWN,        KC_RIGHT,       KC_PGDN,                                        KC_SLASH,       KC_4,           KC_5,           KC_6,           KC_QUES,        KC_TRANSPARENT, 
-    KC_LEFT_GUI,    LCTL(KC_Z),     LCTL(KC_C),     LCTL(KC_V),     LCTL(KC_F),     LCTL(KC_A),                                     KC_EQUAL,       KC_1,           KC_2,           KC_3,           KC_EXLM,        KC_LEFT_CTRL,   
-                                                    KC_TRANSPARENT, TO(0),                                          KC_PSCR,        KC_0
+    KC_TRANSPARENT, LCTL(KC_Z),     LCTL(KC_C),     LCTL(KC_V),     LCTL(KC_F),     LCTL(KC_A),                                     KC_EQUAL,       KC_1,           KC_2,           KC_3,           KC_EXLM,        KC_TRANSPARENT, 
+                                                    KC_TRANSPARENT, TO(0),                                          KC_CAPS,        KC_0
   ),
   [2] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    RGB_MODE_FORWARD,KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_CIRC,        KC_AMPR,        KC_BSLS,        KC_PIPE,        KC_TILD,        LED_LEVEL,      
+    KC_TRANSPARENT, KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_CIRC,        KC_AMPR,        KC_BSLS,        KC_PIPE,        KC_TILD,        KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,                                         KC_AT,          KC_DLR,         KC_PERC,        KC_HASH,        KC_GRAVE,       KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_F11,         KC_F12,         KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,                                KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,KC_BRIGHTNESS_DOWN,KC_BRIGHTNESS_UP,KC_TRANSPARENT, 
-                                                    KC_TRANSPARENT, TO(0),                                          TO(0),          KC_NO
+    KC_TRANSPARENT, KC_F11,         KC_F12,         KC_MEDIA_PREV_TRACK,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_NEXT_TRACK,                                KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,  KC_AUDIO_VOL_UP,RGB_MODE_FORWARD,LED_LEVEL,      KC_TRANSPARENT, 
+                                                    KC_TRANSPARENT, KC_PSCR,                                        TO(0),          KC_NO
   ),
   [3] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -51,32 +51,34 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
-const uint16_t PROGMEM combo0[] = { KC_ENTER, KC_RIGHT_SHIFT, COMBO_END};
-const uint16_t PROGMEM combo1[] = { KC_TAB, KC_Q, COMBO_END};
-const uint16_t PROGMEM combo2[] = { KC_P, KC_H, COMBO_END};
-const uint16_t PROGMEM combo3[] = { KC_Y, KC_N, COMBO_END};
-const uint16_t PROGMEM combo4[] = { KC_M, KC_T, COMBO_END};
-const uint16_t PROGMEM combo5[] = { KC_O, KC_A, COMBO_END};
-const uint16_t PROGMEM combo6[] = { KC_C, KC_S, COMBO_END};
-const uint16_t PROGMEM combo7[] = { KC_U, KC_E, COMBO_END};
-const uint16_t PROGMEM combo8[] = { KC_W, KC_R, COMBO_END};
-const uint16_t PROGMEM combo9[] = { KC_J, KC_I, COMBO_END};
+const uint16_t PROGMEM combo0[] = { KC_P, KC_H, COMBO_END};
+const uint16_t PROGMEM combo1[] = { KC_Y, KC_N, COMBO_END};
+const uint16_t PROGMEM combo2[] = { KC_M, KC_T, COMBO_END};
+const uint16_t PROGMEM combo3[] = { KC_O, KC_A, COMBO_END};
+const uint16_t PROGMEM combo4[] = { KC_C, KC_S, COMBO_END};
+const uint16_t PROGMEM combo5[] = { KC_U, KC_E, COMBO_END};
+const uint16_t PROGMEM combo6[] = { KC_W, KC_R, COMBO_END};
+const uint16_t PROGMEM combo7[] = { KC_J, KC_I, COMBO_END};
+const uint16_t PROGMEM combo8[] = { KC_BSPC, LCTL(KC_BSPC), COMBO_END};
+const uint16_t PROGMEM combo9[] = { KC_SPACE, OSL(1), COMBO_END};
 const uint16_t PROGMEM combo10[] = { OSL(2), OSM(MOD_RSFT), COMBO_END};
-const uint16_t PROGMEM combo11[] = { KC_SPACE, OSL(1), COMBO_END};
+const uint16_t PROGMEM combo11[] = { KC_TAB, KC_Q, COMBO_END};
+const uint16_t PROGMEM combo12[] = { KC_ENTER, KC_RIGHT_SHIFT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo0, TO(0)),
-    COMBO(combo1, KC_ESCAPE),
-    COMBO(combo2, KC_LPRN),
-    COMBO(combo3, KC_RPRN),
-    COMBO(combo4, KC_LBRC),
-    COMBO(combo5, KC_RBRC),
-    COMBO(combo6, KC_LCBR),
-    COMBO(combo7, KC_RCBR),
-    COMBO(combo8, KC_LABK),
-    COMBO(combo9, KC_RABK),
+    COMBO(combo0, KC_LPRN),
+    COMBO(combo1, KC_RPRN),
+    COMBO(combo2, KC_LBRC),
+    COMBO(combo3, KC_RBRC),
+    COMBO(combo4, KC_LCBR),
+    COMBO(combo5, KC_RCBR),
+    COMBO(combo6, KC_LABK),
+    COMBO(combo7, KC_RABK),
+    COMBO(combo8, KC_LEFT_CTRL),
+    COMBO(combo9, KC_LEFT_GUI),
     COMBO(combo10, TO(3)),
-    COMBO(combo11, KC_CAPS),
+    COMBO(combo11, KC_ESCAPE),
+    COMBO(combo12, TO(0)),
 };
 
 
