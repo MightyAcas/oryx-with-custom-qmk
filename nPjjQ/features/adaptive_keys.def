@@ -18,7 +18,8 @@ AK(NQ, KC_N, KC_QUOTE, false, KC_H)   // N' produces NH   ... creates "n't" outr
 AK(WC, KC_W, KC_C, false, KC_R)   // WC produces WR   ... inroll
 AK(WR, KC_W, KC_R, false, KC_C)   // WR produces WC   ... prob the best of the slide turned into adaptive rules
 
-
+AK(AE, KC_A, KC_E, false, KC_Y)   // AE produces AY   ... outroll
+AK(AY, KC_A, KC_Y, false, KC_E)   // AY produces AE   ... cooking up shit in a kettle
 
 // vylet v5 config
 
