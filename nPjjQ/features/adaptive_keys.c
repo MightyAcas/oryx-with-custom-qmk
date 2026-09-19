@@ -1,22 +1,7 @@
 /*
-  Copyright 2018-2022 EricaLinaQi <ericalinaqi@proton.me>>
-
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  Copyright 2018-2022 EricaLinaQi <ericalinaqi@proton.me>
+  Adaptation of Alan Reiser's Adaptive keys for Hands Down.
 */
-
-/* This code is an adaptation of Alan Reiser's Adaptive keys as implemented */
-/* for Hands Down. */
 
 #include QMK_KEYBOARD_H
 #include "adaptive_keys.h"
@@ -24,7 +9,81 @@
 
 #ifdef ADAPTIVE_KEYS_ENABLE
 
-// our adaptive key struct.
+#ifndef ADAPTIVE_TERM
+#define ADAPTIVE_TERM 500
+#endif
+
+#define ADAPTIVE_HISTORY_MAX 8
+
+static uint16_t adaptive_history[ADAPTIVE_HISTORY_MAX];
+static uint8_t  adaptive_history_len = 0;
+static uint32_t adaptive_history_timer = 0;
+
+static void adaptive_clear_history(void) {
+    adaptive_history_len = 0;
+}
+
+static void adaptive_push_history(uint16_t keycode) {
+    if (adaptive_history_len >= ADAPTIVE_HISTORY_MAX) {
+        for (uint8_t i = 1; i < ADAPTIVE_HISTORY_MAX; i++) {
+            adaptive_history[i - 1] = adaptive_history[i];
+        }
+        adaptive_history_len = ADAPTIVE_HISTORY_MAX - 1;
+    }
+    adaptive_history[adaptive_history_len++] = keycode;
+    adaptive_history_timer = timer_read32();
+}
+
+static void adaptive_pop_history(void) {
+    if (adaptive_history_len > 0) {
+        adaptive_history_len--;
+    }
+    adaptive_history_timer = timer_read32();
+}
+
+static uint16_t adaptive_peek_history(void) {
+    if (adaptive_history_len > 0) {
+        return adaptive_history[adaptive_history_len - 1];
+    }
+    return KC_NO;
+}
+
+static bool adaptive_text_key(uint16_t keycode) {
+    if ((keycode >= KC_A && keycode <= KC_Z) ||
+        (keycode >= KC_1 && keycode <= KC_0)) {
+        return true;
+    }
+
+    switch (keycode) {
+        case KC_SPC:
+        case KC_COMM:
+        case KC_DOT:
+        case KC_SCLN:
+        case KC_QUOT:
+        case KC_MINS:
+        case KC_EQL:
+        case KC_SLSH:
+        case KC_BSLS:
+        case KC_LBRC:
+        case KC_RBRC:
+        case KC_GRV:
+            return true;
+        default:
+            return false;
+    }
+}
+
+static uint16_t adaptive_tap_keycode(uint16_t keycode, keyrecord_t *record) {
+    if (IS_QK_MOD_TAP(keycode) || IS_QK_LAYER_TAP(keycode)) {
+        return record->tap.count ? get_tap_keycode(keycode) : KC_NO;
+    }
+    if (keycode >= QK_MODS && keycode <= QK_MODS_MAX) {
+        return QK_MODS_GET_BASIC_KEYCODE(keycode);
+    }
+    return keycode;
+}
+
+// Adaptive key struct
 typedef struct {
     uint16_t prefix_key;
     uint16_t keycode;
@@ -32,105 +91,117 @@ typedef struct {
     const uint16_t *keys;
 } ak_t;
 
-uint16_t prior_keycode;
-
-// Processed is the bool return for process_record_user. true to
-// stop further processing, false to let it continue.
-
 #define AK_END 65535
 #define BLANK(...)
 #define AK_STRUCT {prefix_key, key, processed, &ak_keys##name[0]}
 
-// To create an enum index and find out how many we have.
 #define AK_ENUM(name, prefix_key, key, processed, ...) AK_##name,
-
-// Create a bunch of terminated key lists in memory to point at
 #define AK_DATA(name, prefix_key, key, processed, ...) \
     const uint16_t PROGMEM ak_keys##name[] = {__VA_ARGS__, AK_END};
-
-// build an array of adaptive key structs that point at their keys.
-// use its enum for the index.
 #define AK_ENTRY(name, prefix_key, key, processed, ...) \
     [AK_##name] = {prefix_key, key, processed, &ak_keys##name[0]},
 
-// Create Enum from the names
+// Create enum
 #undef AK
 #define AK AK_ENUM
 enum aks {
 #include "adaptive_keys.def"
     AK_LENGTH
 };
-// set the length
 uint16_t AK_LEN = AK_LENGTH;
 
-// declare arrays with the keys to send.
+// Create data arrays
 #undef AK
 #define AK AK_DATA
 #include "adaptive_keys.def"
 #undef AK
 
-// An array of the Adaptive key entry structures
+// Create struct array
 #define AK AK_ENTRY
 ak_t adaptive_keys[] = {
 #include "adaptive_keys.def"
 };
 #undef AK
 
-uint16_t adaptive_key_timer = 0;
-
-// find one or return null.
-ak_t* find_adaptive_key(uint16_t keycode, uint16_t prior_keycode){
-  for (int i = 0; i < AK_LEN; ++i) {
-      if (keycode == adaptive_keys[i].keycode &&
-          prior_keycode == adaptive_keys[i].prefix_key){
-          return (&adaptive_keys[i]);
-      }
-  }
-  return NULL;
+ak_t* find_adaptive_key(uint16_t keycode, uint16_t prior_keycode) {
+    for (int i = 0; i < AK_LEN; ++i) {
+        if (keycode == adaptive_keys[i].keycode &&
+            prior_keycode == adaptive_keys[i].prefix_key) {
+            return (&adaptive_keys[i]);
+        }
+    }
+    return NULL;
 }
 
-// Send the keys for the adaptive key pair and
-// return the requested return code.
-bool send_adaptive_keys(ak_t* ak){
-    // loop through the keys and send them until we hit AK_END.
-    for (uint8_t j=0; pgm_read_word(&ak->keys[j]) != AK_END; ++j){
-        tap_code16(pgm_read_word(&ak->keys[j]));
+static bool send_adaptive_keys(ak_t* ak) {
+    for (uint8_t j = 0; pgm_read_word(&ak->keys[j]) != AK_END; ++j) {
+        uint16_t out_key = pgm_read_word(&ak->keys[j]);
+        tap_code16(out_key);
+        if (out_key == KC_BSPC) {
+            adaptive_pop_history();
+        } else if (adaptive_text_key(out_key)) {
+            adaptive_push_history(out_key);
+        }
     }
-
-  return (ak->processed);  // return true or false.
+    return ak->processed;
 }
 
 bool process_adaptive_key(uint16_t keycode, keyrecord_t *record) {
-    ak_t* ak = NULL;
-    uint8_t saved_mods = get_mods();
-    bool return_processed = true;
-
-    if (!record->event.pressed)
-        return return_processed;
-
-    // Are we in an adaptive context?
-    if (timer_elapsed(adaptive_key_timer) > ADAPTIVE_TERM) {
-        // outside adaptive threshhold
-        // Set the keycode and timer for the next time around.
-        prior_keycode = keycode;
-        adaptive_key_timer = timer_read();
-        return true; // no adaptive conditions, so return.
+    if (!record->event.pressed) {
+        return true;
     }
 
-    ak = find_adaptive_key(keycode, prior_keycode);
+    uint16_t basic = adaptive_tap_keycode(keycode, record);
+    if (basic == KC_NO) {
+        return true;
+    }
 
-    if (ak != NULL){  // send the keys if we found one.
-        if (!is_caps_word_on()) { // turn off shift, (first-words & Proper nouns)
-            unregister_mods(MOD_MASK_SHIFT);  //CAPS_WORD/LOCK won't be affected.
+    uint8_t mods = get_mods() | get_oneshot_mods() | get_weak_mods();
+
+    // 1. Intercept Backspace
+    if (basic == KC_BSPC) {
+        if (mods || keycode != KC_BSPC) {
+            // Modified backspace (e.g. Ctrl+Backspace) wipes context
+            adaptive_clear_history();
+        } else {
+            // Single unshifted backspace pops the top character
+            adaptive_pop_history();
         }
-        return_processed = send_adaptive_keys(ak);
-        register_mods(saved_mods);
-        prior_keycode = 0;
-    } else {
-        // no adaptive key matches, maybe next time.
-        prior_keycode = keycode;
-        adaptive_key_timer = timer_read();
+        return true;
     }
-    return return_processed;
+
+    // 2. Check idle expiration
+    if (timer_elapsed32(adaptive_history_timer) > ADAPTIVE_TERM) {
+        adaptive_clear_history();
+    }
+
+    // 3. Inspect top of history stack
+    uint16_t prior_keycode = adaptive_peek_history();
+    ak_t* ak = find_adaptive_key(basic, prior_keycode);
+
+    if (ak != NULL) {
+        uint8_t saved_mods = get_mods();
+        if (!is_caps_word_on()) {
+            unregister_mods(MOD_MASK_SHIFT);
+        }
+
+        bool return_processed = send_adaptive_keys(ak);
+        register_mods(saved_mods);
+
+        if (return_processed && adaptive_text_key(basic)) {
+            adaptive_push_history(basic);
+        }
+        return return_processed;
+    }
+
+    // 4. Record plain text keys into history
+    if (adaptive_text_key(basic) &&
+        (!mods || (basic >= KC_A && basic <= KC_Z && !(mods & ~MOD_MASK_SHIFT)))) {
+        adaptive_push_history(basic);
+    } else {
+        adaptive_clear_history();
+    }
+
+    return true;
 }
 #endif
